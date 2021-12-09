@@ -1,0 +1,21 @@
+Player {
+	PK id: INTEGER,
+	name: VARCHAR(64),
+	position: VARCHAR(1),
+	team: VARCHAR(64)
+}
+
+Team {
+	PK id: INTEGER,
+	name: VARCHAR(64),
+	budget: INTEGER,
+	username: VARCHAR(64)
+	password: VARCHAR(128)
+}
+
+auctions {
+	PK id: INTEGER,
+	FK team: INTEGER,
+	FK player: INTEGER,
+	amount: INTEGER
+}
