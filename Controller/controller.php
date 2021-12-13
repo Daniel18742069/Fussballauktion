@@ -19,6 +19,10 @@ class Controller
 		$this->load_page($action);
 	}
 
+	public function index() {
+		
+	}
+
 	private function load_page(string $page)
 	{
 		require('template/' . $page . '.tmp.php');
