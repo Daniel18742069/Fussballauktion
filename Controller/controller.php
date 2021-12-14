@@ -34,9 +34,9 @@ class Controller
 
 	private function login()
 	{
-		$login = Team::login(REQUEST['user'], REQUEST['pass']);
-		if ($login) {
-			$_SESSION['user'] = $login;
+		$Login = Team::login(REQUEST['user'], REQUEST['pass']);
+		if ($Login) {
+			$_SESSION['user'] = $Login;
 		}
 
 		header('Location: index.php?act=index');
@@ -47,6 +47,18 @@ class Controller
 		session_destroy();
 
 		header('Location: index.php?act=index');
+	}
+
+	private function search()
+	{
+		$Players = Player::search(REQUEST['name']);
+		if ($Players) {
+			foreach ($Players as $player) {
+				$content['Players'][$player->get_index()] = $player->get_all();
+			}
+		} else {
+			$content['Error'] = 'Keine Spieler Gefunden';
+		}
 	}
 
 	private function load_page(string $page)

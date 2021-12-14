@@ -105,4 +105,42 @@ class Player
 
 		return $Player;
 	}
+
+	/**
+	 * Finds Players containing $name.
+	 * Returns Player array on success,
+	 * false on failure.
+	 */
+	public static function search(string $name): array|bool
+	{
+		$query = 'SELECT
+		`id` AS `index`,
+		`name`,
+		`position`,
+		`team`
+		FROM player
+		WHERE
+		`name` LIKE "%' . $name . '%";';
+
+		$db = Database::open();
+		$results = $db->query($query, true)->fetch_array(MYSQLI_ASSOC);
+		$db->close();
+
+		if ($results) {
+			$Players = [];
+
+			foreach ($results as $result) {
+				$Players[$result['index']] = new Player(
+					$result['index'],
+					$result['name'],
+					$result['position'],
+					$result['team']
+				);
+			}
+
+			return $Players;
+		}
+
+		return false;
+	}
 }
