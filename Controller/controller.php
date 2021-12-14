@@ -34,11 +34,9 @@ class Controller
 
 	private function login()
 	{
-		$username = REQUEST['user'];
-		$password = REQUEST['pass'];
-		$password = password_hash($password, PASSWORD_BCRYPT);
-
-		if (Player::login($username, $password)) {
+		$login = Team::login(REQUEST['user'], REQUEST['pass']);
+		if ($login) {
+			$_SESSION['user'] = $login;
 		}
 	}
 

@@ -105,8 +105,4 @@ class Player
 
 		return $Player;
 	}
-
-	public static function login(string $username, string $password) {
-		
-	}
 }
