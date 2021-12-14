@@ -1,6 +1,8 @@
 <?php
 session_start();
-//require_once ...
+require_once 'Controller/controller.php';
+require_once 'Model/database.php';
+require_once 'Model/player.php';
 
 define('REQUEST', $_REQUEST);
 unset($_REQUEST);
