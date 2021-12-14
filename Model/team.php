@@ -137,7 +137,7 @@ class Team
 		$result = $db->query($query, true)->fetch_array(MYSQLI_ASSOC);
 		$db->close();
 
-		if (password_verify($password, $result['hash'])) {
+		if ($result && password_verify($password, $result['hash'])) {
 			return $result['index'];
 		}
 
