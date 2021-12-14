@@ -3,7 +3,7 @@
 /**
  * @author Andreas Codalonga
  */
-class User
+class Player
 {
 	private int $index;
 	private string $name;
@@ -18,27 +18,27 @@ class User
 		$this->team = $team;
 	}
 
-	public function get_index()
+	public function get_index(): int
 	{
 		return $this->index;
 	}
 
-	public function get_name()
+	public function get_name(): string
 	{
 		return $this->name;
 	}
 
-	public function get_position()
+	public function get_position(): string
 	{
 		return $this->first_name;
 	}
 
-	public function get_team()
+	public function get_team(): string
 	{
 		return $this->last_name;
 	}
 
-	public function get_all()
+	public function get_all(): array
 	{
 		return [
 			'index' => $this->index,
@@ -49,9 +49,9 @@ class User
 	}
 
 	/**
-	 * Returns all Users
+	 * Returns all Players
 	 */
-	public static function all()
+	public static function all(): array
 	{
 		$query = 'SELECT
 		id AS `index`,
@@ -67,7 +67,7 @@ class User
 		$Players = [];
 
 		foreach ($results as $result) {
-			$Players[$result['index']] = new User(
+			$Players[$result['index']] = new Player(
 				$result['index'],
 				$result['name'],
 				$result['position'],
@@ -79,9 +79,9 @@ class User
 	}
 
 	/**
-	 * Returns User from index
+	 * Returns Player from index
 	 */
-	public static function get(int $index)
+	public static function get(int $index): Player|null
 	{
 		$query = 'SELECT
 		`id` AS `index`,
@@ -96,7 +96,7 @@ class User
 		$result = $db->query($query, true)->fetch_array(MYSQLI_ASSOC);
 		$db->close();
 
-		$Player = new User(
+		$Player = new Player(
 			$result['index'],
 			$result['name'],
 			$result['position'],
