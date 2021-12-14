@@ -53,30 +53,29 @@ class User
 	 */
 	public static function all()
 	{
-		$query = 'SELECT id AS "index",
-		benutzername AS "name",
-		vorname AS first_name,
-		nachname AS last_name,
-		passwort AS "password"
-		FROM benutzer;';
+		$query = 'SELECT
+		id AS `index`,
+		`name`,
+		`position`,
+		`team`
+		FROM player;';
 
 		$db = Database::open();
 		$results = $db->query($query, true)->fetch_all(MYSQLI_ASSOC);
 		$db->close();
 
-		$Users = [];
+		$Players = [];
 
 		foreach ($results as $result) {
-			$Users[$result['index']] = new User(
+			$Players[$result['index']] = new User(
 				$result['index'],
 				$result['name'],
-				$result['first_name'],
-				$result['last_name'],
-				$result['password']
+				$result['position'],
+				$result['team']
 			);
 		}
 
-		return $Users;
+		return $Players;
 	}
 
 	/**
@@ -84,26 +83,26 @@ class User
 	 */
 	public static function get(int $index)
 	{
-		$query = 'SELECT id AS "index",
-		benutzername AS "name",
-		vorname AS first_name,
-		nachname AS last_name,
-		passwort AS "password"
-		FROM benutzer
-		WHERE id = ' . $index . ';';
+		$query = 'SELECT
+		`id` AS `index`,
+		`name`,
+		`position`,
+		`team`
+		FROM player
+		WHERE
+		`id` = ' . $index . ';';
 
 		$db = Database::open();
 		$result = $db->query($query, true)->fetch_array(MYSQLI_ASSOC);
 		$db->close();
 
-		$User = new User(
+		$Player = new User(
 			$result['index'],
 			$result['name'],
-			$result['first_name'],
-			$result['last_name'],
-			$result['password']
+			$result['position'],
+			$result['team']
 		);
 
-		return $User;
+		return $Player;
 	}
 }
