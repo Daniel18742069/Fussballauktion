@@ -117,4 +117,35 @@ class Team
 
 		return $Team;
 	}
+
+	/**
+	 * Returns Integer on success or Boolean on failure
+	 */
+	public static function login(string $username, string $password): int|bool
+	{
+		$query = 'SELECT
+		id AS `index`,
+		`name`,
+		`budget`,
+		`username`,
+		`password` AS `hash`
+		FROM team
+		WHERE
+		`username` = ' . $username . ';';
+
+		$db = Database::open();
+		$result = $db->query($query, true)->fetch_array(MYSQLI_ASSOC);
+		$db->close();
+
+		if (password_verify($password, $result['hash'])) {
+			return $result['index'];
+		}
+
+		return false;
+	}
+
+	/*
+	For Register use:
+	password_hash($password, CRYPT_BLOWFISH);
+	*/
 }

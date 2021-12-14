@@ -19,7 +19,7 @@ class Controller
 		$this->load_page($action);
 	}
 
-	public function index()
+	private function index()
 	{
 		if (isset($_SESSION['user'])) {	//	if logged in
 			$Team = Team::get($_SESSION['user']);
@@ -29,6 +29,14 @@ class Controller
 		$Players = Player::all();
 		foreach ($Players as $Player) {
 			$content['Players'][$Player->get_index()] = $Player->get_all();
+		}
+	}
+
+	private function login()
+	{
+		$login = Team::login(REQUEST['user'], REQUEST['pass']);
+		if ($login) {
+			$_SESSION['user'] = $login;
 		}
 	}
 
