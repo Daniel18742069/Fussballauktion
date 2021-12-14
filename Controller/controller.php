@@ -57,7 +57,7 @@ class Controller
 				$content['Players'][$player->get_index()] = $player->get_all();
 			}
 		} else {
-			$content['Error'] = 'Keine Spieler Gefunden';
+			$content['Error'] = readfile('Error/404.txt');
 		}
 	}
 
