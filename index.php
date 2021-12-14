@@ -7,7 +7,7 @@ require_once 'Model/team.php';
 
 define('REQUEST', $_REQUEST);
 unset($_REQUEST);
-$action = 'start';
+$action = 'index';
 
 if (isset(REQUEST['act'])) {
 	if (!empty(REQUEST['act'])) {
@@ -18,5 +18,5 @@ if (isset(REQUEST['act'])) {
 if (method_exists($Controller, $action)) {
 	$Controller->run($action);
 } else {
-	$Controller->run('start');
+	$Controller->run('index');
 }

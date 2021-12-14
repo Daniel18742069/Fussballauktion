@@ -38,6 +38,15 @@ class Controller
 		if ($login) {
 			$_SESSION['user'] = $login;
 		}
+
+		header('Location: index.php?act=index');
+	}
+
+	private function logout()
+	{
+		session_destroy();
+
+		header('Location: index.php?act=index');
 	}
 
 	private function load_page(string $page)
