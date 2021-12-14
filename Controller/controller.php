@@ -19,8 +19,17 @@ class Controller
 		$this->load_page($action);
 	}
 
-	public function index() {
-		
+	public function index()
+	{
+		if (isset($_SESSION['user'])) {	//	if logged in
+			$Team = Team::get($_SESSION['user']);
+			$content['Team'] = $Team->get_all();
+		}
+
+		$Players = Player::all();
+		foreach ($Players as $Player) {
+			$content['Players'][$Player->get_index()] = $Player->get_all();
+		}
 	}
 
 	private function load_page(string $page)
