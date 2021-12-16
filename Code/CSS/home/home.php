@@ -1,7 +1,3 @@
-<?php 
-require "../Code/login/login.php";
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +5,7 @@ require "../Code/login/login.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css" media="screen" />
+    <link rel="stylesheet" href="home.css" media="screen" />
     <title>Fussballauktion</title>
     <script src="https://kit.fontawesome.com/6016e9420e.js" crossorigin="anonymous"></script>
 </head>
@@ -42,15 +38,6 @@ require "../Code/login/login.php";
                 <span class="worth">45,00 Mio. <i class="fas fa-euro-sign"></i></span>
             </li>
         </ul>
-    </div>
-    <div class="login">
-        <form action="#">
-            <label for="teamname">Teamname</label><br>
-            <input type="text" id="teamname" name="teamname" value=""><br>
-            <label for="passwort">Passwort</label><br>
-            <input type="text" id="passwort" name="passwort" value=""><br><br>
-            <input type="submit" value="Submit">
-        </form>
     </div>
     <footer>
         <p>Footer</p>
