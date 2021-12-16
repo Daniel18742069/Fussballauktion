@@ -65,8 +65,9 @@ class Controller
 	{
 		if (isset($_SESSION['user'])) {	//	if logged in
 			$Team = Team::get($_SESSION('user'));
-			//player
-			//auction
+			$Player = Player::get(REQUEST['player']);
+			$Player->auction($Team);
+			$Team->set_budget(-1);
 		}
 	}
 

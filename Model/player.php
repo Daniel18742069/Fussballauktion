@@ -148,6 +148,5 @@ class Player
 	{
 		$Auction = Auction::player($this->index);
 		$Auction->auction($Team->get_index());
-		$Team->reduce_budget();
 	}
 }

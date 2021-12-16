@@ -45,9 +45,9 @@ class Team
 		return $this->password;
 	}
 
-	public function reduce_budget(): void
+	public function set_budget($increment): void
 	{
-		$this->budget--;
+		$this->budget + $increment;
 	}
 
 	public function get_all(): array
