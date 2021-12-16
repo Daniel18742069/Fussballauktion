@@ -45,6 +45,11 @@ class Team
 		return $this->password;
 	}
 
+	public function reduce_budget(): void
+	{
+		$this->budget--;
+	}
+
 	public function get_all(): array
 	{
 		return [
