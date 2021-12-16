@@ -61,6 +61,16 @@ class Controller
 		}
 	}
 
+	private function auction()
+	{
+		if (isset($_SESSION['user'])) {	//	if logged in
+			$Team = Team::get($_SESSION('user'));
+			$Player = Player::get(REQUEST['player']);
+			$Player->auction($Team);
+			$Team->set_budget(-1);
+		}
+	}
+
 	private function load_page(string $page)
 	{
 		require('template/' . $page . '.tmp.php');

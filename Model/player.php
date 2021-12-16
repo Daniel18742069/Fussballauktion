@@ -143,4 +143,10 @@ class Player
 
 		return false;
 	}
+
+	public function auction(Team $Team)
+	{
+		$Auction = Auction::player($this->index);
+		$Auction->auction($Team->get_index());
+	}
 }

@@ -45,6 +45,11 @@ class Team
 		return $this->password;
 	}
 
+	public function set_budget($increment): void
+	{
+		$this->budget + $increment;
+	}
+
 	public function get_all(): array
 	{
 		return [
