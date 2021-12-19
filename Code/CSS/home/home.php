@@ -29,13 +29,13 @@
                 <span class="name">Neri Filippo</span>
                 <span class="Mannschaft">VENEZIA</span>
                 <span class="position">G</span>
-                <span class="worth">45,00 Mio. <i class="fas fa-euro-sign"></i></span>
+                <span class="worth">45,00 Mio</i></span>
             </li>
             <li class="rows">
                 <span class="name">Neri Filippo</span>
                 <span class="Mannschaft">VENEZIA</span>
                 <span class="position">G</span>
-                <span class="worth">45,00 Mio. <i class="fas fa-euro-sign"></i></span>
+                <span class="worth">45,00 Mio</i></span>
             </li>
         </ul>
     </div>

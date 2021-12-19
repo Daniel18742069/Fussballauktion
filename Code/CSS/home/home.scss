@@ -64,7 +64,10 @@ body {
         }
 
         li:hover {
+            cursor: pointer;
             transform: scale(1.03);
+            text-decoration: underline solid #0e1111;
+            text-underline-position: under;
             //background: rgba(255, 255, 255, 0.1);
         }
 
@@ -78,7 +81,9 @@ body {
 
         }
         .masterRow:hover {
+            cursor: default;
             transform: none;
+            text-decoration: none;
         }
 
     }
@@ -96,5 +101,4 @@ div {
   height: 10em;
   margin: 2em;
   float: left;
-  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%,rgba(0,0,0,0.05) 100%); 
 }
