@@ -25,17 +25,17 @@
                 <span class="position">Position</span>
                 <span class="worth">Preis in <i class="fas fa-euro-sign"></i></span>
             </li>
-            <li class="rows">
+            <li class="rows" onclick="location.href='../player/player.php';">
                 <span class="name">Neri Filippo</span>
                 <span class="Mannschaft">VENEZIA</span>
                 <span class="position">G</span>
                 <span class="worth">45,00 Mio</i></span>
             </li>
-            <li class="rows">
-                <span class="name">Neri Filippo</span>
-                <span class="Mannschaft">VENEZIA</span>
+            <li class="rows" onclick="location.href='../player/player.php';">
+                <span class="name">Russo Antonio</span>
+                <span class="Mannschaft">SALERNITANA</span>
                 <span class="position">G</span>
-                <span class="worth">45,00 Mio</i></span>
+                <span class="worth">150,00 Tsd</i></span>
             </li>
         </ul>
     </div>

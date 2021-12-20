@@ -15,7 +15,7 @@
     <form class="form1">
       <input class="un " type="text" align="center" placeholder="Username">
       <input class="pass" type="password" align="center" placeholder="Password">
-      <a class="submit" align="center" href="../CSS/home/home.php">Sign in</a>
+      <a class="submit" align="center" href="../home/home.php">Sign in</a>
             
                 
     </div>
