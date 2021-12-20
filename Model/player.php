@@ -146,8 +146,8 @@ class Player
 
 	public function auction(Team $Team)
 	{
-		$Auction = Auction::player($this->get_index());
-		$Team->auction($this, $Auction);
+		$Auction = Auction::player($this->get_index(), true);
 		$Auction->auction($Team->get_index());
+		$Team->auction($this);
 	}
 }
