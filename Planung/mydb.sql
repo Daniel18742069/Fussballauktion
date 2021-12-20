@@ -54,7 +54,7 @@ CREATE TABLE `player` (
 
 CREATE TABLE `team` (
   `id` int(11) NOT NULL,
-  `namen` varchar(64) DEFAULT NULL,
+  `name` varchar(64) DEFAULT NULL,
   `budget` int(11) DEFAULT NULL,
   `username` varchar(64) DEFAULT NULL,
   `password` varchar(128) DEFAULT NULL
