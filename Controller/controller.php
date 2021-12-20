@@ -23,12 +23,12 @@ class Controller
 	{
 		if (isset($_SESSION['user'])) {	//	if logged in
 			$Team = Team::get($_SESSION['user']);
-			$content['Team'] = $Team->get_all();
+			$this->content['Team'] = $Team->get_all();
 		}
 
 		$Players = Player::all();
 		foreach ($Players as $Player) {
-			$content['Players'][$Player->get_index()] = $Player->get_all();
+			$this->content['Players'][$Player->get_index()] = $Player->get_all();
 		}
 	}
 
@@ -54,10 +54,10 @@ class Controller
 		$Players = Player::search(REQUEST['name']);
 		if ($Players) {
 			foreach ($Players as $player) {
-				$content['Players'][$player->get_index()] = $player->get_all();
+				$this->content['Players'][$player->get_index()] = $player->get_all();
 			}
 		} else {
-			$content['Error'] = readfile('Error/404.txt');
+			$this->content['Error'] = file_get_contents('Error/404.txt');
 		}
 	}
 
@@ -67,7 +67,6 @@ class Controller
 			$Team = Team::get($_SESSION('user'));
 			$Player = Player::get(REQUEST['player']);
 			$Player->auction($Team);
-			$Team->set_budget(-1);
 		}
 	}
 

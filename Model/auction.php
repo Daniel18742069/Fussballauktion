@@ -133,6 +133,34 @@ class Auction
 		return $Auction;
 	}
 
+	public static function team(int $player, int $team): Auction|null
+	{
+		$query = 'SELECT
+		id AS `index`,
+		`team`,
+		`player`,
+		`amount`
+		FROM auctions
+		WHERE
+		`player` = ' . $player . '
+		AND `team` = ' . $team . '
+		ORDER BY `amount` DESC
+		LIMIT 1;';
+
+		$db = Database::open();
+		$result = $db->query($query, true)->fetch_array(MYSQLI_ASSOC);
+		$db->close();
+
+		$Auction = new Auction(
+			$result['index'],
+			$result['team'],
+			$result['player'],
+			$result['amount']
+		);
+
+		return $Auction;
+	}
+
 	public function auction(int $team): void
 	{
 		$query = 'INSERT

@@ -1,10 +1,13 @@
 <?php
 session_start();
+require_once 'config.php';
 require_once 'Controller/controller.php';
 require_once 'Model/database.php';
 require_once 'Model/player.php';
 require_once 'Model/team.php';
 require_once 'Model/auction.php';
+
+$Controller = new Controller();
 
 define('REQUEST', $_REQUEST);
 unset($_REQUEST);

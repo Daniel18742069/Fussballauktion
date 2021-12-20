@@ -123,7 +123,7 @@ class Player
 		`name` LIKE "%' . $name . '%";';
 
 		$db = Database::open();
-		$results = $db->query($query, true)->fetch_array(MYSQLI_ASSOC);
+		$results = $db->query($query, true)->fetch_all(MYSQLI_ASSOC);
 		$db->close();
 
 		if ($results) {
@@ -146,7 +146,8 @@ class Player
 
 	public function auction(Team $Team)
 	{
-		$Auction = Auction::player($this->index);
+		$Auction = Auction::player($this->get_index());
+		$Team->auction($this, $Auction);
 		$Auction->auction($Team->get_index());
 	}
 }

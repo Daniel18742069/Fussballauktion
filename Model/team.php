@@ -17,7 +17,7 @@ class Team
 		$this->name = $name;
 		$this->budget = $budget;
 		$this->username = $username;
-		$this->passowrd = $password;
+		$this->password = $password;
 	}
 
 	public function get_index(): int
@@ -45,9 +45,9 @@ class Team
 		return $this->password;
 	}
 
-	public function set_budget($increment): void
+	private function set_bodget(int $budget)
 	{
-		$this->budget + $increment;
+		$this->budget = $budget;
 	}
 
 	public function get_all(): array
@@ -129,20 +129,17 @@ class Team
 	public static function login(string $username, string $password): int|bool
 	{
 		$query = 'SELECT
-		id AS `index`,
-		`name`,
-		`budget`,
-		`username`,
-		`password` AS `hash`
+		`id` AS `index`,
+		`password`
 		FROM team
 		WHERE
-		`username` = ' . $username . ';';
+		`username` = "' . $username . '";';
 
 		$db = Database::open();
 		$result = $db->query($query, true)->fetch_array(MYSQLI_ASSOC);
 		$db->close();
 
-		if ($result && password_verify($password, $result['hash'])) {
+		if ($result['password'] == $password) {
 			return $result['index'];
 		}
 
@@ -153,4 +150,11 @@ class Team
 	For Register use:
 	password_hash($password, CRYPT_BLOWFISH);
 	*/
+
+	public function auction(Player $player, Auction $auction)
+	{
+		$amount = $auction->get_amount();
+		$invested = Auction::team($player->get_index(), $this->get_index());
+		$this->set_bodget($amount - $invested - 1);
+	}
 }
