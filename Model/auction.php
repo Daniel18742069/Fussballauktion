@@ -13,9 +13,9 @@ class Auction
 	private function __construct($index, $team, $player, $amount)
 	{
 		$this->index = $index;
-		$this->name = $team;
-		$this->position = $player;
-		$this->team = $amount;
+		$this->team = $team;
+		$this->player = $player;
+		$this->amount = $amount;
 	}
 
 	public function get_index(): int
@@ -35,7 +35,7 @@ class Auction
 
 	public function get_amount(): int
 	{
-		return $this->last_name;
+		return $this->amount;
 	}
 
 	public function get_all(): array
@@ -106,7 +106,7 @@ class Auction
 		return $Auction;
 	}
 
-	public static function player(int $player): Auction|null
+	public static function player(int $player, bool $force_return = false): Auction|null
 	{
 		$query = 'SELECT
 		id AS `index`,
@@ -123,17 +123,62 @@ class Auction
 		$result = $db->query($query, true)->fetch_array(MYSQLI_ASSOC);
 		$db->close();
 
-		$Auction = new Auction(
-			$result['index'],
-			$result['team'],
-			$result['player'],
-			$result['amount']
-		);
+		if ($result) {
+			$Auction = new Auction(
+				$result['index'],
+				$result['team'],
+				$result['player'],
+				$result['amount']
+			);
+		} else if ($force_return) {
+			$Auction = new Auction(
+				0,
+				$_SESSION['user'],
+				$player,
+				0
+			);
+		} else {
+			return NULL;
+		}
 
 		return $Auction;
 	}
 
-	public static function team(int $player, int $team): Auction|null
+	public static function team(int $team): array
+	{
+		$query = 'SELECT
+		id AS `index`,
+		`team`,
+		`player`,
+		`amount`
+		FROM auctions
+		WHERE
+		`team` = ' . $team . '
+		ORDER BY `player` DESC
+		LIMIT 1;';
+
+		$db = Database::open();
+		$results = $db->query($query, true)->fetch_all(MYSQLI_ASSOC);
+		$db->close();
+
+		$Auctions = [];
+
+		foreach ($results as $result) {
+			$Auctions[$result['index']] = new Auction(
+				$result['index'],
+				$result['team'],
+				$result['player'],
+				$result['amount']
+			);
+		}
+
+		return $Auctions;
+	}
+
+	/**
+	 * Returns highest Bidding or 0
+	 */
+	public static function player_and_team(int $player, int $team): Auction|null
 	{
 		$query = 'SELECT
 		id AS `index`,
@@ -151,14 +196,18 @@ class Auction
 		$result = $db->query($query, true)->fetch_array(MYSQLI_ASSOC);
 		$db->close();
 
-		$Auction = new Auction(
-			$result['index'],
-			$result['team'],
-			$result['player'],
-			$result['amount']
-		);
+		if ($result) {
+			$Auction = new Auction(
+				$result['index'],
+				$result['team'],
+				$result['player'],
+				$result['amount']
+			);
 
-		return $Auction;
+			return $Auction;
+		} else {
+			return NULL;
+		}
 	}
 
 	public function auction(int $team): void
@@ -175,7 +224,7 @@ class Auction
 		);';
 
 		$db = Database::open();
-		$db->query($query, false)->fetch_array(MYSQLI_ASSOC);
+		$db->query($query, false);
 		$db->close();
 	}
 }
