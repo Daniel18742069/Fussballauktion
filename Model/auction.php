@@ -78,6 +78,34 @@ class Auction
 		return $Auctions;
 	}
 
+	private function save()
+	{
+		if ($this::get($this->index)) {
+			$query = 'UPDATE
+			`auction` SET
+			`player` = ' . $this->player . ',
+			`team` = ' . $this->team . ',
+			`amount` = ' . $this->amount . '
+			WHERE
+			`id` = ' . $this->index . ';';
+		} else {
+			$query = 'INSERT INTO
+			`auction`(
+				`player`,
+				`team`,
+				`amount`
+			) VALUES (
+				' . $this->player . ',
+				' . $this->team . ',
+				' . $this->amount . '
+			);';
+		}
+
+		$db = Database::open();
+		$db->query($query, false);
+		$db->close();
+	}
+
 	/**
 	 * Returns Player from index
 	 */
@@ -96,17 +124,21 @@ class Auction
 		$result = $db->query($query, true)->fetch_array(MYSQLI_ASSOC);
 		$db->close();
 
-		$Auction = new Auction(
-			$result['index'],
-			$result['team'],
-			$result['player'],
-			$result['amount']
-		);
+		if ($result) {
+			$Auction = new Auction(
+				$result['index'],
+				$result['team'],
+				$result['player'],
+				$result['amount']
+			);
+		} else {
+			return NULL;
+		}
 
 		return $Auction;
 	}
 
-	public static function player(int $player, bool $force_return = false): Auction|null
+	public static function player(int $player): Auction|null
 	{
 		$query = 'SELECT
 		id AS `index`,
@@ -129,13 +161,6 @@ class Auction
 				$result['team'],
 				$result['player'],
 				$result['amount']
-			);
-		} else if ($force_return) {
-			$Auction = new Auction(
-				0,
-				$_SESSION['user'],
-				$player,
-				0
 			);
 		} else {
 			return NULL;
@@ -203,28 +228,55 @@ class Auction
 				$result['player'],
 				$result['amount']
 			);
-
-			return $Auction;
 		} else {
 			return NULL;
 		}
+
+		return $Auction;
 	}
 
-	public function auction(int $team): void
+	public static function find_or_create(int $player, int $team)
 	{
-		$query = 'INSERT
-		INTO `auctions` (
+		$query = 'SELECT
+		id AS `index`,
 		`team`,
 		`player`,
 		`amount`
-		) VALUES (
-		' . $this->player . ',
-		' . $team . ',
-		' . $this->amount + 1 . '
-		);';
+		FROM auctions
+		WHERE
+		`player` = ' . $player . '
+		ORDER BY `amount` DESC
+		LIMIT 1;';
 
 		$db = Database::open();
-		$db->query($query, false);
+		$result = $db->query($query, true)->fetch_array(MYSQLI_ASSOC);
 		$db->close();
+
+		if ($result) {
+			$Auction = new Auction(
+				$result['index'],
+				$result['team'],
+				$result['player'],
+				$result['amount']
+			);
+		} else {
+			$Auction = new Auction(
+				0,
+				$team,
+				$player,
+				0
+			);
+			$Auction->save();
+		}
+
+		return $Auction;
+	}
+
+	public function auction(int $team, int $player): void
+	{
+		$this->team = $team;
+		$this->player = $player;
+		$this->amount++;
+		$this->save();
 	}
 }
