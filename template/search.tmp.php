@@ -3,6 +3,10 @@
 
 <body>
 	<header>
+		<!--Website Logo-->
+		<h1>
+			<a href="index.php">Football Maniacs!</a>
+		</h1>
 
 		<!--Searchbar-->
 		<form action="index.php" method="get">
