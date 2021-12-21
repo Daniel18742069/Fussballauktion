@@ -11,11 +11,11 @@
 
 <body>
   <div class="main">
-    <p class="sign" align="center">Sign in</p>
+    <p class="sign" align="center">Login</p>
     <form class="form1">
       <input class="un " type="text" align="center" placeholder="Username">
       <input class="pass" type="password" align="center" placeholder="Password">
-      <a class="submit" align="center" href="../home/home.php">Sign in</a>
+      <a class="submit" align="center" href="../home/home.php">Login</a>
             
                 
     </div>
