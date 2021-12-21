@@ -54,7 +54,7 @@ class Controller
 		$Player = Player::get(REQUEST['index']);
 
 		if ($Player) {
-			$this->content['Players'][$Player->get_index()] = $Player->get_all();
+			$this->content['Player'] = $Player->get_all();
 		} else {
 			$this->content['Error'] = file_get_contents('Error/player-404.txt');
 		}

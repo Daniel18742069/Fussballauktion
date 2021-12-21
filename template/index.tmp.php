@@ -17,15 +17,18 @@
 	</header>
 
 	<main>
-		<!--Display all Players-->
 		<h2>Spieler:</h2>
 		<table>
+
 			<thead>
 				<th>Name</th>
 				<th>Position</th>
 				<th>Team</th>
 			</thead>
+
+			<!--Display all Players-->
 			<?php foreach (CONTENT['Players'] as $Player) : ?>
+
 				<tr>
 					<td>
 						<a href="index.php?act=player&index=<?= $Player['index']; ?>">
@@ -39,6 +42,7 @@
 						<?= $Player['team']; ?>
 					</td>
 				</tr>
+
 			<?php endforeach; ?>
 		</table>
 	</main>
