@@ -220,7 +220,7 @@ class Auction
 		) VALUES (
 		' . $this->player . ',
 		' . $team . ',
-		' . ++$this->amount . '
+		' . $this->amount + 1 . '
 		);';
 
 		$db = Database::open();
