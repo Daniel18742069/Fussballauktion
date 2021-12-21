@@ -13,8 +13,8 @@
         <p>G</p>
         <p>VENEZIA</p>
         <p>150 Mio</p>
-        <button type="button" class="back" href="../home/home.php">Zurück</button>
         <button type="button" class="buy">Kaufen</button>
+        <button type="button" class="back" onClick="javascript:history.back()">Zurück</button>
     </div>
 </body>
 </html>

@@ -12,9 +12,6 @@
 
 <body>
     <header>
-        <div class="logo">
-
-        </div>
 
     </header>
     <div class="tabelle">
