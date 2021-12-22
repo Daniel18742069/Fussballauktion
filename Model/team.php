@@ -60,10 +60,10 @@ class Team
 	{
 		$query = 'UPDATE
 		`team` SET
-		`name` = ' . $this->name . ',
+		`name` = "' . $this->name . '",
 		`budget` = ' . $this->budget . ',
-		`username` = ' . $this->username . ',
-		`password` = ' . $this->password . '
+		`username` = "' . $this->username . '",
+		`password` = "' . $this->password . '"
 		WHERE
 		`id` = ' . $this->index . ';';
 

@@ -82,20 +82,22 @@ class Controller
 
 		if (isset($_SESSION['user']) && $Player) {	//	if logged in & exists
 			$Team = Team::get($_SESSION['user']);
+			$Auction_last = Auction::player_and_team($Player->get_index(), $Team->get_index());
+			$Auction = Auction::player($Player->get_index(), $Team->get_index());
 
-			if ($Team->get_budget() >= 1) {
-				$Auction_last = Auction::player_and_team($Player->get_index(), $Team->get_index());
-				$Auction = Auction::find_or_create($Player->get_index(), $Team->get_index());
+			$invested = ($Auction_last)
+				? $Auction_last->get_amount()
+				: 0;
 
-				$invested = ($Auction->get_index())
-					? $Auction_last->get_amount()
-					: 0;
+			$amount = ($Auction)
+				? $Auction->get_amount() + 1
+				: 1;
 
+			$difference = $amount - $invested;
+
+			if ($Team->get_budget() >= $difference) {
 				$Auction->auction($Team->get_index(), $Player->get_index());
 
-				$amount = $Auction->get_amount();
-
-				$difference = $amount - $invested;
 				$Team->auction($difference);
 			}
 		}

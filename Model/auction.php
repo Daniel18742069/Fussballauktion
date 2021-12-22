@@ -58,7 +58,7 @@ class Auction
 		`team`,
 		`player`,
 		`amount`
-		FROM auctions;';
+		FROM auction;';
 
 		$db = Database::open();
 		$results = $db->query($query, true)->fetch_all(MYSQLI_ASSOC);
@@ -80,26 +80,16 @@ class Auction
 
 	private function save()
 	{
-		if ($this::get($this->index)) {
-			$query = 'UPDATE
-			`auction` SET
-			`player` = ' . $this->player . ',
-			`team` = ' . $this->team . ',
-			`amount` = ' . $this->amount . '
-			WHERE
-			`id` = ' . $this->index . ';';
-		} else {
-			$query = 'INSERT INTO
-			`auction`(
-				`player`,
-				`team`,
-				`amount`
-			) VALUES (
-				' . $this->player . ',
-				' . $this->team . ',
-				' . $this->amount . '
-			);';
-		}
+		$query = 'INSERT INTO
+		`auction`(
+			`player`,
+			`team`,
+			`amount`
+		) VALUES (
+			' . $this->player . ',
+			' . $this->team . ',
+			' . $this->amount . '
+		);';
 
 		$db = Database::open();
 		$db->query($query, false);
@@ -116,7 +106,7 @@ class Auction
 		`team`,
 		`player`,
 		`amount`
-		FROM auctions
+		FROM auction
 		WHERE
 		`id` = ' . $index . ';';
 
@@ -131,21 +121,21 @@ class Auction
 				$result['player'],
 				$result['amount']
 			);
-		} else {
-			return NULL;
+
+			return $Auction;
 		}
 
-		return $Auction;
+		return NULL;
 	}
 
-	public static function player(int $player): Auction|null
+	public static function player(int $player, int|bool $team = false): Auction|null
 	{
 		$query = 'SELECT
 		id AS `index`,
 		`team`,
 		`player`,
 		`amount`
-		FROM auctions
+		FROM auction
 		WHERE
 		`player` = ' . $player . '
 		ORDER BY `amount` DESC
@@ -162,6 +152,13 @@ class Auction
 				$result['player'],
 				$result['amount']
 			);
+		} elseif ($team) {
+			$Auction = new Auction(
+				0,
+				$team,
+				$player,
+				0
+			);
 		} else {
 			return NULL;
 		}
@@ -176,7 +173,7 @@ class Auction
 		`team`,
 		`player`,
 		`amount`
-		FROM auctions
+		FROM auction
 		WHERE
 		`team` = ' . $team . '
 		ORDER BY `player` DESC
@@ -210,7 +207,7 @@ class Auction
 		`team`,
 		`player`,
 		`amount`
-		FROM auctions
+		FROM auction
 		WHERE
 		`player` = ' . $player . '
 		AND `team` = ' . $team . '
@@ -228,48 +225,11 @@ class Auction
 				$result['player'],
 				$result['amount']
 			);
-		} else {
-			return NULL;
+
+			return $Auction;
 		}
 
-		return $Auction;
-	}
-
-	public static function find_or_create(int $player, int $team)
-	{
-		$query = 'SELECT
-		id AS `index`,
-		`team`,
-		`player`,
-		`amount`
-		FROM auctions
-		WHERE
-		`player` = ' . $player . '
-		ORDER BY `amount` DESC
-		LIMIT 1;';
-
-		$db = Database::open();
-		$result = $db->query($query, true)->fetch_array(MYSQLI_ASSOC);
-		$db->close();
-
-		if ($result) {
-			$Auction = new Auction(
-				$result['index'],
-				$result['team'],
-				$result['player'],
-				$result['amount']
-			);
-		} else {
-			$Auction = new Auction(
-				0,
-				$team,
-				$player,
-				0
-			);
-			$Auction->save();
-		}
-
-		return $Auction;
+		return NULL;
 	}
 
 	public function auction(int $team, int $player): void
