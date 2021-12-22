@@ -9,30 +9,18 @@
 		</h1>
 
 		<!--Searchbar-->
-		<form action="index.php" method="get">
-			<input name="act" type="hidden" value="search" />
-			<input id="searchbar" name="name" type="text" placeholder="Spieler Suchen" />
-			<input name="submit" type="submit" />
-		</form>
+		<?php include 'Include/searchbar.html'; ?>
 
 		<!--Logout/Login-->
 		<?php if (isset($_SESSION['user'])) : ?>
 
 			<!--Logout-->
-			<form action="index.php" method="post">
-				<input name="act" type="hidden" value="logout" />
-				<input name="submit" type="submit" value="Ausloggen" />
-			</form>
+			<?php include 'Include/logout.html'; ?>
 
 		<?php else : ?>
 
 			<!--Login-->
-			<form action="index.php" method="post">
-				<input name="act" type="hidden" value="login" />
-				<input id="username" name="name" type="text" placeholder="benutzername" />
-				<input id="password" name="pass" type="password" placeholder="passwort" />
-				<input name="submit" type="submit" value="Einloggen" />
-			</form>
+			<?php include 'Include/login.html'; ?>
 		<?php endif; ?>
 	</header>
 

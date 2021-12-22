@@ -107,6 +107,6 @@ class Controller
 
 	private function load_page(string $page)
 	{
-		require('template/' . $page . '.tmp.php');
+		require('Template/' . $page . '.tmp.php');
 	}
 }
