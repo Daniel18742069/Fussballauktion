@@ -23,10 +23,12 @@ class Controller
 	{
 		if (isset($_SESSION['user'])) {	//	if logged in
 			$Team = Team::get($_SESSION['user']);
+
 			$this->content['Team'] = $Team->get_all();
 		}
 
 		$Players = Player::all();
+
 		foreach ($Players as $Player) {
 			$this->content['Players'][$Player->get_index()] = $Player->get_all();
 		}
@@ -35,6 +37,7 @@ class Controller
 	private function login()
 	{
 		$Login = Team::login(REQUEST['name'], REQUEST['pass']);
+
 		if ($Login) {
 			$_SESSION['user'] = $Login;
 		}
@@ -54,7 +57,7 @@ class Controller
 		$Player = Player::get(REQUEST['index']);
 
 		if ($Player) {
-			$this->content['Players'][$Player->get_index()] = $Player->get_all();
+			$this->content['Player'] = $Player->get_all();
 		} else {
 			$this->content['Error'] = file_get_contents('Error/player-404.txt');
 		}
@@ -63,6 +66,7 @@ class Controller
 	private function search()
 	{
 		$Players = Player::search(REQUEST['name']);
+
 		if ($Players) {
 			foreach ($Players as $Player) {
 				$this->content['Players'][$Player->get_index()] = $Player->get_all();
@@ -74,10 +78,28 @@ class Controller
 
 	private function auction()
 	{
-		if (isset($_SESSION['user'])) {	//	if logged in
+		$Player = Player::get(REQUEST['player']);
+
+		if (isset($_SESSION['user']) && $Player) {	//	if logged in & exists
 			$Team = Team::get($_SESSION['user']);
-			$Player = Player::get(REQUEST['player']);
-			$Player->auction($Team);
+			$Auction_last = Auction::player_and_team($Player->get_index(), $Team->get_index());
+			$Auction = Auction::player($Player->get_index(), $Team->get_index());
+
+			$invested = ($Auction_last)
+				? $Auction_last->get_amount()
+				: 0;
+
+			$amount = ($Auction)
+				? $Auction->get_amount() + 1
+				: 1;
+
+			$difference = $amount - $invested;
+
+			if ($Team->get_budget() >= $difference) {
+				$Auction->auction($Team->get_index(), $Player->get_index());
+
+				$Team->auction($difference);
+			}
 		}
 
 		header('Location: index.php?act=player&index=' . REQUEST['player']);
@@ -85,6 +107,6 @@ class Controller
 
 	private function load_page(string $page)
 	{
-		require('template/' . $page . '.tmp.php');
+		require('Template/' . $page . '.tmp.php');
 	}
 }

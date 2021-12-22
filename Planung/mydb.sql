@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 20. Dez 2021 um 09:37
--- Server-Version: 10.4.22-MariaDB
--- PHP-Version: 8.0.13
+-- Generation Time: Dec 22, 2021 at 09:21 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,36 +18,26 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `mydb`
+-- Database: `mydb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `auctions`
+-- Table structure for table `auction`
 --
 
-CREATE TABLE `auctions` (
+CREATE TABLE `auction` (
   `id` int(11) NOT NULL,
   `player` int(11) NOT NULL,
   `team` int(11) NOT NULL,
-  `amount` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Daten für Tabelle `auctions`
---
-
-INSERT INTO `auctions` (`id`, `player`, `team`, `amount`) VALUES
-(1, 1, 1, 1),
-(2, 1, 2, 2),
-(3, 1, 1, 3),
-(4, 1, 3, 4);
+  `amount` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `player`
+-- Table structure for table `player`
 --
 
 CREATE TABLE `player` (
@@ -58,7 +48,7 @@ CREATE TABLE `player` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Daten für Tabelle `player`
+-- Dumping data for table `player`
 --
 
 INSERT INTO `player` (`id`, `name`, `position`, `team`) VALUES
@@ -70,7 +60,7 @@ INSERT INTO `player` (`id`, `name`, `position`, `team`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `team`
+-- Table structure for table `team`
 --
 
 CREATE TABLE `team` (
@@ -82,7 +72,7 @@ CREATE TABLE `team` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Daten für Tabelle `team`
+-- Dumping data for table `team`
 --
 
 INSERT INTO `team` (`id`, `name`, `budget`, `username`, `password`) VALUES
@@ -91,47 +81,47 @@ INSERT INTO `team` (`id`, `name`, `budget`, `username`, `password`) VALUES
 (3, 'FC Fahrradgang', 7, 'rad', 'rad123');
 
 --
--- Indizes der exportierten Tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Indizes für die Tabelle `auctions`
+-- Indexes for table `auction`
 --
-ALTER TABLE `auctions`
+ALTER TABLE `auction`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_Player_has_Team_Team1_idx` (`team`),
   ADD KEY `fk_Player_has_Team_Player_idx` (`player`);
 
 --
--- Indizes für die Tabelle `player`
+-- Indexes for table `player`
 --
 ALTER TABLE `player`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indizes für die Tabelle `team`
+-- Indexes for table `team`
 --
 ALTER TABLE `team`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT für exportierte Tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT für Tabelle `auctions`
+-- AUTO_INCREMENT for table `auction`
 --
-ALTER TABLE `auctions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `auction`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT für Tabelle `player`
+-- AUTO_INCREMENT for table `player`
 --
 ALTER TABLE `player`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT für Tabelle `team`
+-- AUTO_INCREMENT for table `team`
 --
 ALTER TABLE `team`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
