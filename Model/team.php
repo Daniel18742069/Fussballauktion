@@ -45,12 +45,6 @@ class Team
 		return $this->password;
 	}
 
-	private function set_bodget(int $budget)
-	{
-		$this->budget = $budget;
-		$this->save();
-	}
-
 	public function get_all(): array
 	{
 		return [
@@ -66,7 +60,10 @@ class Team
 	{
 		$query = 'UPDATE
 		`team` SET
-		`budget`= ' . $this->budget . '
+		`name` = "' . $this->name . '",
+		`budget` = ' . $this->budget . ',
+		`username` = "' . $this->username . '",
+		`password` = "' . $this->password . '"
 		WHERE
 		`id` = ' . $this->index . ';';
 
@@ -165,19 +162,9 @@ class Team
 	password_hash($password, CRYPT_BLOWFISH);
 	*/
 
-	public function auction(Player $player)
+	public function auction(int $difference)
 	{
-		$amount = Auction::player($player->get_index());
-		$invested = Auction::player_and_team($player->get_index(), $this->get_index());
-
-		if ($amount) {
-			$amount = $amount->get_amount();
-
-			if ($invested) {
-				$invested = $invested->get_amount();
-			}
-		}
-
-		$this->set_bodget($this->get_budget() - ($amount - $invested) - 1);
+		$this->budget = $this->budget - $difference;
+		$this->save();
 	}
 }

@@ -58,7 +58,7 @@ class Auction
 		`team`,
 		`player`,
 		`amount`
-		FROM auctions;';
+		FROM auction;';
 
 		$db = Database::open();
 		$results = $db->query($query, true)->fetch_all(MYSQLI_ASSOC);
@@ -78,6 +78,24 @@ class Auction
 		return $Auctions;
 	}
 
+	private function save()
+	{
+		$query = 'INSERT INTO
+		`auction`(
+			`player`,
+			`team`,
+			`amount`
+		) VALUES (
+			' . $this->player . ',
+			' . $this->team . ',
+			' . $this->amount . '
+		);';
+
+		$db = Database::open();
+		$db->query($query, false);
+		$db->close();
+	}
+
 	/**
 	 * Returns Player from index
 	 */
@@ -88,7 +106,7 @@ class Auction
 		`team`,
 		`player`,
 		`amount`
-		FROM auctions
+		FROM auction
 		WHERE
 		`id` = ' . $index . ';';
 
@@ -96,24 +114,28 @@ class Auction
 		$result = $db->query($query, true)->fetch_array(MYSQLI_ASSOC);
 		$db->close();
 
-		$Auction = new Auction(
-			$result['index'],
-			$result['team'],
-			$result['player'],
-			$result['amount']
-		);
+		if ($result) {
+			$Auction = new Auction(
+				$result['index'],
+				$result['team'],
+				$result['player'],
+				$result['amount']
+			);
 
-		return $Auction;
+			return $Auction;
+		}
+
+		return NULL;
 	}
 
-	public static function player(int $player, bool $force_return = false): Auction|null
+	public static function player(int $player, int|bool $team = false): Auction|null
 	{
 		$query = 'SELECT
 		id AS `index`,
 		`team`,
 		`player`,
 		`amount`
-		FROM auctions
+		FROM auction
 		WHERE
 		`player` = ' . $player . '
 		ORDER BY `amount` DESC
@@ -130,10 +152,10 @@ class Auction
 				$result['player'],
 				$result['amount']
 			);
-		} else if ($force_return) {
+		} elseif ($team) {
 			$Auction = new Auction(
 				0,
-				$_SESSION['user'],
+				$team,
 				$player,
 				0
 			);
@@ -151,7 +173,7 @@ class Auction
 		`team`,
 		`player`,
 		`amount`
-		FROM auctions
+		FROM auction
 		WHERE
 		`team` = ' . $team . '
 		ORDER BY `player` DESC
@@ -185,7 +207,7 @@ class Auction
 		`team`,
 		`player`,
 		`amount`
-		FROM auctions
+		FROM auction
 		WHERE
 		`player` = ' . $player . '
 		AND `team` = ' . $team . '
@@ -205,26 +227,16 @@ class Auction
 			);
 
 			return $Auction;
-		} else {
-			return NULL;
 		}
+
+		return NULL;
 	}
 
-	public function auction(int $team): void
+	public function auction(int $team, int $player): void
 	{
-		$query = 'INSERT
-		INTO `auctions` (
-		`team`,
-		`player`,
-		`amount`
-		) VALUES (
-		' . $this->player . ',
-		' . $team . ',
-		' . $this->amount + 1 . '
-		);';
-
-		$db = Database::open();
-		$db->query($query, false);
-		$db->close();
+		$this->team = $team;
+		$this->player = $player;
+		$this->amount++;
+		$this->save();
 	}
 }
