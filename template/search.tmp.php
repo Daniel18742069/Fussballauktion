@@ -36,7 +36,7 @@
 
 		<?php else : ?>
 
-			<h1>Spieler:</h1>
+			<h2>Spieler:</h2>
 			<table>
 
 				<thead>

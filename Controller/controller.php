@@ -21,33 +21,43 @@ class Controller
 
 	private function index()
 	{
-		if (isset($_SESSION['user'])) {	//	if logged in
+		if (isset($_SESSION['user'])) {
 			$Team = Team::get($_SESSION['user']);
-			$Auctions = Auction::all();
 
 			$this->content['Team'] = $Team->get_all();
+		} else {
 
-			foreach ($Auctions as $Auction) {
-				$this->content['Auctions'][$Auction->get_player()] = $Auction->get_all();
-			}
+			header('Location: index.php?act=login');
 		}
 
 		$Players = Player::all();
 
 		foreach ($Players as $Player) {
-			$this->content['Players'][$Player->get_index()] = $Player->get_all();
+			$Auction = Auction::player($Player->get_index(), 1);
+
+			$player = $Player->get_all();
+			$player['worth'] = $Auction->get_amount();
+
+			$this->content['Players'][$Player->get_index()] = $player;
 		}
 	}
 
 	private function login()
 	{
-		$Login = Team::login(REQUEST['name'], REQUEST['pass']);
+		if (isset($_SESSION['user'])) {
 
-		if ($Login) {
-			$_SESSION['user'] = $Login;
+			header('Location: index.php?act=index');
+		} else {
+			if (isset(REQUEST['name']) && isset(REQUEST['pass'])) {
+				$Login = Team::login(REQUEST['name'], REQUEST['pass']);
+
+				if ($Login) {
+					$_SESSION['user'] = $Login;
+
+					header('Location: index.php?act=index');
+				}
+			}
 		}
-
-		header('Location: index.php?act=index');
 	}
 
 	private function logout()
@@ -62,6 +72,8 @@ class Controller
 		$Player = Player::get(REQUEST['index']);
 
 		if ($Player) {
+			//auction data to content
+
 			$this->content['Player'] = $Player->get_all();
 		} else {
 			$this->content['Error'] = file_get_contents('Error/player-404.txt');

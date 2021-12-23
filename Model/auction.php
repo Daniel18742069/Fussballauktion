@@ -30,7 +30,7 @@ class Auction
 
 	public function get_player(): int
 	{
-		return $this->first_player;
+		return $this->player;
 	}
 
 	public function get_amount(): int
