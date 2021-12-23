@@ -30,7 +30,7 @@ class Auction
 
 	public function get_player(): int
 	{
-		return $this->first_player;
+		return $this->player;
 	}
 
 	public function get_amount(): int
@@ -56,7 +56,7 @@ class Auction
 		$query = 'SELECT
 		id AS `index`,
 		`team`,
-		`player`,
+        `player`, 
 		`amount`
 		FROM auction;';
 
@@ -97,7 +97,7 @@ class Auction
 	}
 
 	/**
-	 * Returns Player from index
+	 * Returns Auction from index
 	 */
 	public static function get(int $index): Auction|null
 	{

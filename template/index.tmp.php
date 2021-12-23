@@ -32,6 +32,7 @@
 				<th>Name</th>
 				<th>Position</th>
 				<th>Team</th>
+				<th>Wert</th>
 			</thead>
 
 			<!--Display all Players-->
@@ -48,6 +49,9 @@
 					</td>
 					<td>
 						<?= $Player['team']; ?>
+					</td>
+					<td>
+						<?= $Player['worth']; ?>
 					</td>
 				</tr>
 

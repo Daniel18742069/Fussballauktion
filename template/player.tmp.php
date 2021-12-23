@@ -63,6 +63,43 @@
 				<input name="submit" type="submit" value="Bieten" />
 			</form>
 
+			<!--Auction Progress-->
+			<?php if (isset(CONTENT['Auctions'])) : ?>
+				<table>
+
+					<thead>
+						<th></th>
+						<th>Team</th>
+						<th>Angebot</th>
+					</thead>
+
+					<tr>
+						<td>Höchster Bieter:</td>
+						<td>
+							<?= CONTENT['Auctions']['current']['team']; ?>
+						</td>
+						<td>
+							<?= CONTENT['Auctions']['current']['amount']; ?> Millionen
+						</td>
+					</tr>
+
+					<?php if (isset(CONTENT['Auctions']['user'])) : ?>
+
+						<tr>
+							<td>Ihre Bietung:</td>
+							<td>
+								<?= CONTENT['Auctions']['user']['team']; ?>
+							</td>
+							<td>
+								<?= CONTENT['Auctions']['user']['amount']; ?> Millionen
+							</td>
+						</tr>
+
+					<?php endif; ?>
+
+				</table>
+			<?php endif; ?>
+
 		<?php endif; ?>
 	</main>
 </body>
