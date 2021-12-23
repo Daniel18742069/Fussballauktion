@@ -72,9 +72,29 @@ class Controller
 		$Player = Player::get(REQUEST['index']);
 
 		if ($Player) {
-			//auction data to content
-
 			$this->content['Player'] = $Player->get_all();
+
+			$Auction_current = Auction::player($Player->get_index());
+
+			if ($Auction_current) {
+				$Team_current = Team::get($Auction_current->get_team());
+				$auction_current = $Auction_current->get_all();
+				$auction_current['team'] = $Team_current->get_name();
+
+				$this->content['Auctions']['current'] = $auction_current;
+
+				if (isset($_SESSION['user'])) {
+					$Auction_user = Auction::player($Player->get_index(), $_SESSION['user']);
+
+					if ($Auction_user) {
+						$Team_user = Team::get($Auction_user->get_team());
+						$auction_user = $Auction_user->get_all();
+						$auction_user['team'] = $Team_user->get_name();
+
+						$this->content['Auctions']['user'] = $auction_user;
+					}
+				}
+			}
 		} else {
 			$this->content['Error'] = file_get_contents('Error/player-404.txt');
 		}
@@ -97,23 +117,23 @@ class Controller
 	{
 		$Player = Player::get(REQUEST['player']);
 
-		if (isset($_SESSION['user']) && $Player) {	//	if logged in & exists
+		if (isset($_SESSION['user']) && $Player) {
 			$Team = Team::get($_SESSION['user']);
-			$Auction_last = Auction::player_and_team($Player->get_index(), $Team->get_index());
-			$Auction = Auction::player($Player->get_index(), $Team->get_index());
+			$Auction_user = Auction::player_and_team($Player->get_index(), $Team->get_index());
+			$Auction_current = Auction::player($Player->get_index(), $Team->get_index());
 
-			$invested = ($Auction_last)
-				? $Auction_last->get_amount()
+			$invested = ($Auction_user)
+				? $Auction_user->get_amount()
 				: 0;
 
-			$amount = ($Auction)
-				? $Auction->get_amount() + 1
+			$amount = ($Auction_current)
+				? $Auction_current->get_amount() + 1
 				: 1;
 
 			$difference = $amount - $invested;
 
 			if ($Team->get_budget() >= $difference) {
-				$Auction->auction($Team->get_index(), $Player->get_index());
+				$Auction_current->auction($Team->get_index(), $Player->get_index());
 
 				$Team->auction($difference);
 			}

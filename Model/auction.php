@@ -53,14 +53,12 @@ class Auction
 	 */
 	public static function all(): array
 	{
-		$query = 'SELECT DISTINCT
+		$query = 'SELECT
 		id AS `index`,
 		`team`,
         `player`, 
 		`amount`
-		FROM auction
-        GROUP BY `player`
-        DESC;';
+		FROM auction;';
 
 		$db = Database::open();
 		$results = $db->query($query, true)->fetch_all(MYSQLI_ASSOC);
@@ -69,7 +67,7 @@ class Auction
 		$Auctions = [];
 
 		foreach ($results as $result) {
-			$Auctions[$result['player']] = new Auction(
+			$Auctions[$result['index']] = new Auction(
 				$result['index'],
 				$result['team'],
 				$result['player'],
@@ -99,7 +97,7 @@ class Auction
 	}
 
 	/**
-	 * Returns Player from index
+	 * Returns Auction from index
 	 */
 	public static function get(int $index): Auction|null
 	{
