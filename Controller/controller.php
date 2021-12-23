@@ -23,8 +23,13 @@ class Controller
 	{
 		if (isset($_SESSION['user'])) {	//	if logged in
 			$Team = Team::get($_SESSION['user']);
+			$Auctions = Auction::all();
 
 			$this->content['Team'] = $Team->get_all();
+
+			foreach ($Auctions as $Auction) {
+				$this->content['Auctions'][$Auction->get_player()] = $Auction->get_all();
+			}
 		}
 
 		$Players = Player::all();
