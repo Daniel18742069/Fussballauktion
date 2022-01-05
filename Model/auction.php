@@ -51,14 +51,15 @@ class Auction
 	/**
 	 * Returns all Auctions
 	 */
-	public static function all(): array
+	public static function all(string $index = 'index'): array
 	{
 		$query = 'SELECT
-		id AS `index`,
-		`team`,
-        `player`, 
-		`amount`
-		FROM auction;';
+			id AS `index`,
+			`team`,
+			`player`, 
+			`amount`
+			FROM auction
+			ORDER BY `amount` DESC;';
 
 		$db = Database::open();
 		$results = $db->query($query, true)->fetch_all(MYSQLI_ASSOC);
@@ -67,12 +68,29 @@ class Auction
 		$Auctions = [];
 
 		foreach ($results as $result) {
-			$Auctions[$result['index']] = new Auction(
-				$result['index'],
-				$result['team'],
-				$result['player'],
-				$result['amount']
-			);
+
+			switch ($index) {
+
+				case 'player':
+					if (!isset($Auctions[$result['player']])) {
+						$Auctions[$result['player']] = new Auction(
+							$result['index'],
+							$result['team'],
+							$result['player'],
+							$result['amount']
+						);
+					}
+					break;
+
+				default:
+					$Auctions[$result['index']] = new Auction(
+						$result['index'],
+						$result['team'],
+						$result['player'],
+						$result['amount']
+					);
+					break;
+			}
 		}
 
 		return $Auctions;

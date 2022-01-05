@@ -23,22 +23,24 @@ class Controller
 	{
 		if (isset($_SESSION['user'])) {
 			$Team = Team::get($_SESSION['user']);
-
 			$this->content['Team'] = $Team->get_all();
+
+			$Players = Player::all();
+			$Auctions = Auction::all('player');
+			foreach ($Players as $Player) {
+
+				$player = $Player->get_all();
+				if (isset($Auctions[$Player->get_index()])) {
+					$player['worth'] = $Auctions[$Player->get_index()]->get_amount();
+				} else {
+					$player['worth'] = 0;
+				}
+
+				$this->content['Players'][$Player->get_index()] = $player;
+			}
 		} else {
 
 			header('Location: index.php?act=login');
-		}
-
-		$Players = Player::all();
-
-		foreach ($Players as $Player) {
-			$Auction = Auction::player($Player->get_index(), 1);
-
-			$player = $Player->get_all();
-			$player['worth'] = $Auction->get_amount();
-
-			$this->content['Players'][$Player->get_index()] = $player;
 		}
 	}
 
