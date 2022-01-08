@@ -143,4 +143,18 @@ class Player
 
 		return false;
 	}
+
+	public function picture()
+	{
+		$file = file_get_contents('Bilder/playerImages.txt');
+		$rows = explode(';', $file);
+		foreach ($rows as $row) {
+			$values = explode('|', $row);
+			if ($values[0] == $this->name) {
+				return $values[1];
+			}
+		}
+
+		return 'Bilder/default_pfp.png';
+	}
 }

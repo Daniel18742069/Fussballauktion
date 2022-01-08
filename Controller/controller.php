@@ -72,9 +72,11 @@ class Controller
 		$Player = Player::get(REQUEST['index']);
 
 		if ($Player) {
-			$this->content['Player'] = $Player->get_all();
+			$player = $Player->get_all();
+			$player['picture'] = $Player->picture();
 
-			// Auction
+			$this->content['Player'] = $player;
+
 			$Auction_current = Auction::player($Player->get_index());
 
 			if ($Auction_current) {
