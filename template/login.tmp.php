@@ -2,9 +2,8 @@
 <html>
 
 <head>
-	<link rel="stylesheet" href="css/style.css">
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
 	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/login.css" media="screen" />
 	<title>Sign in</title>
@@ -12,11 +11,10 @@
 
 <body>
 	<header>
-		<!--Website Logo-->
-		<h1>
-			<a href="index.php">Football Maniacs!</a>
-		</h1>
+		<h1>Kaufen Sie internationale Fußball-Stars zum Top-Preis</h1>
 	</header>
+
+	<div class="bg-image"></div>
 
 	<main>
 		<!--Login-->

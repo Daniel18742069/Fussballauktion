@@ -2,20 +2,18 @@
 <html>
 
 <head>
-  <link rel="stylesheet" href="css/style.css">
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/index.css" media="screen" />
-  <title>Sign in</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/index.css" media="screen" />
+	<title>Fussballauktion</title>
 </head>
 
 <body>
 	<header>
 		<!--Website Logo-->
-		<h1>
-			<a href="index.php">Football Maniacs!</a>
-		</h1>
+		<a href="index.php" class="logo"><img src="../Bilder/header.png" alt="Football Maniacs!"></a>
 
 		<!--Searchbar-->
 		<?php include 'Include/searchbar.html'; ?>
@@ -33,40 +31,64 @@
 		<?php endif; ?>
 	</header>
 
+	<!--Dark Mode-->
+	<nav>
+		<div class="mode-toggle"></div>
+		<div class="container">
+			<div class="dark-mode"></div>
+		</div>
+
+		<script>
+			let modeToggle = document.querySelector('.mode-toggle');
+			let darkMode = document.querySelector('.dark-mode');
+
+			modeToggle.addEventListener('click', () => {
+				darkMode.classList.toggle('active');
+				modeToggle.classList.toggle('active');
+			})
+		</script>
+
+	</nav>
+
 	<main>
-		<h2>Spieler:</h2>
 		<table>
 
-			<thead>
-				<th>Name</th>
-				<th>Position</th>
-				<th>Team</th>
-				<th>Wert</th>
-			</thead>
+			<div class="container">
+				<ul class="responsive-table">
+					<li class="table-header">
+						<div class="col col-1">Name</div>
+						<div class="col col-2">Position</div>
+						<div class="col col-3">Team</div>
+						<div class="col col-4">Wert</div>
+					</li>
 
-			<!--Display all Players-->
-			<?php foreach (CONTENT['Players'] as $Player) : ?>
+					<?php foreach (CONTENT['Players'] as $Player) : ?>
 
-				<tr>
-					<td>
-						<a href=" index.php?act=player&index=<?= $Player['index']; ?>">
-							<?= $Player['name']; ?>
-						</a>
-					</td>
-					<td>
-						<?= $Player['position']; ?>
-					</td>
-					<td>
-						<?= $Player['team']; ?>
-					</td>
-					<td>
-						<?= $Player['worth']; ?>
-					</td>
-				</tr>
+						<li class="table-row" onclick="window.location='index.php?act=player&index=<?= $Player['index']; ?>'">
+							<div class="col col-1">
+								<?= $Player['name']; ?>
+								</a>
+							</div>
+							<div class="col col-2">
+								<?= $Player['position']; ?>
+							</div>
+							<div class="col col-3">
+								<?= $Player['team']; ?>
+							</div>
+							<div class="col col-4">
+								<?= $Player['worth']; ?>
+							</div>
+						</li>
+					<?php endforeach; ?>
+				</ul>
 
-			<?php endforeach; ?>
+			</div>
+
 		</table>
+
+
 	</main>
+
 </body>
 
 </html>

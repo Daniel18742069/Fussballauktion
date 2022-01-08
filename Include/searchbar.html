@@ -1,5 +1,19 @@
-<form action="index.php" method="get">
-	<input name="act" type="hidden" value="search" />
-	<input id="searchbar" name="name" type="text" placeholder="Spieler Suchen" />
-	<input name="submit" type="submit" />
+<!DOCTYPE html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/search.css" media="screen" />
+	<title>Searchbar</title>
+</head>
+
+
+	<form action="index.php" method="get">
+		<div class="search-box">
+		<input name="act" type="hidden" value="search" />
+		<button class="btn-search" name="submit"><img src="../Bilder/search-solid.svg">
+		</button>
+		<input type="text" class="input-search" id="searchbar" name="name" placeholder="Type to Search...">
+</div>
 </form>

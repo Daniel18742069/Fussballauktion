@@ -1,15 +1,25 @@
 @charset "UTF-8";
 
+$gradient1: linear-gradient(to bottom,  #0e1111 0%, #414a4c 187%);
+$gradient2: linear-gradient(to bottom, #20962A 0%, #5DE368 187%);
+
+
 html {
-  background: linear-gradient(to bottom, #0e1111 0%, #414a4c 187%);
-  height: 100vh;
+  height: 100%;
+  
+  backdrop-filter: blur(8px);
+  background-size: cover;
+  background-image: url("../Bilder/background8.jpg");
+
 
 }
 
 .main {
+  position: relative;
+  top: 100px;
   background-color: #ecebeb;
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   margin: 7em auto;
   border-radius: 1.5em;
   border: 0.5em solid #0e1111 #414a4c #0e1111 #414a4c;
@@ -18,18 +28,20 @@ html {
 
 .sign {
   padding-top: 40px;
-  color: #8C55AA;
+  //color: #8C55AA;
+  color: #20962A;
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
-  font-size: 23px;
+  font-size: 50px;
+  letter-spacing: 2px;
 }
 
 .un {
   width: 76%;
   color: rgb(38, 50, 56);
   font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 1px;
+  font-size: 20px;
+  letter-spacing: 5px;
   background: rgba(136, 126, 126, 0.04);
   padding: 10px 20px;
   border: none;
@@ -52,8 +64,8 @@ form.form1 {
   width: 76%;
   color: rgb(38, 50, 56);
   font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 1px;
+  font-size: 20px;
+  letter-spacing: 5px;
   background: rgba(136, 126, 126, 0.04);
   padding: 10px 20px;
   border: none;
@@ -76,10 +88,13 @@ form.form1 {
 }
 
 .submit {
+  width: 150px;
+  height: 50px;
   cursor: pointer;
-  border-radius: 5em;
+  border-radius: 25px;
   color: #fff;
-  background: linear-gradient(to right, #9C27B0, #E040FB);
+  //background: linear-gradient(to right, #9C27B0, #E040FB);
+  background: linear-gradient(to right, #20962A, #5DE368);
   border: 0;
   padding-left: 40px;
   padding-right: 40px;
@@ -88,8 +103,10 @@ form.form1 {
   font-family: 'Ubuntu', sans-serif;
   margin-top: 10px;
   margin-left: 35%;
-  font-size: 13px;
+  font-size: 16px;
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+  position: relative;
+  top: 30px;
 }
 
 a {
@@ -102,4 +119,8 @@ a {
   .main {
     border-radius: 0px;
   }
+}
+
+h1 {
+  color: #20962A;
 }

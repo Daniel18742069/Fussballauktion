@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Chivo:300,700|Playfair+Display:700i" rel="stylesheet">
+	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/player.css" media="screen" />
+	<title>Fussballauktion</title>
+</head>
+
 <body>
 	<header>
 		<!--Website Logo-->
-		<h1>
-			<a href="index.php">Football Maniacs!</a>
-		</h1>
+		<a href="index.php" class="logo"><img src="../Bilder/header.png" alt="Football Maniacs!"></a>
 
 		<!--Searchbar-->
 		<?php include 'Include/searchbar.html'; ?>
@@ -34,7 +41,10 @@
 
 		<?php else : ?>
 
-			<h2>Spieler:</h2>
+			<div class="player-image">
+				<img style="-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;" src="https://img.a.transfermarkt.technology/portrait/big/616228-1630075221.jpg?lm=1">
+			</div>
+
 			<table>
 
 				<thead>
@@ -60,8 +70,13 @@
 			<!--Auctioning-->
 			<form action="index.php?act=auction" method="post">
 				<input name="player" type="hidden" value="<?= CONTENT['Player']['index']; ?>">
-				<input name="submit" type="submit" value="Bieten" />
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<input class="btn-bieten" name="submit" type="submit" value="Bieten" />
 			</form>
+
 
 			<!--Auction Progress-->
 			<?php if (isset(CONTENT['Auctions'])) : ?>
@@ -70,7 +85,7 @@
 					<thead>
 						<th></th>
 						<th>Team</th>
-						<th>Angebot</th>
+						<th>Wert</th>
 					</thead>
 
 					<tr>
@@ -79,19 +94,19 @@
 							<?= CONTENT['Auctions']['current']['team']; ?>
 						</td>
 						<td>
-							<?= CONTENT['Auctions']['current']['amount']; ?> Millionen
+							<?= CONTENT['Auctions']['current']['amount']; ?> Mio. €
 						</td>
 					</tr>
 
 					<?php if (isset(CONTENT['Auctions']['user'])) : ?>
 
 						<tr>
-							<td>Ihre Bietung:</td>
+							<td>Ihr Gebot:</td>
 							<td>
 								<?= CONTENT['Auctions']['user']['team']; ?>
 							</td>
 							<td>
-								<?= CONTENT['Auctions']['user']['amount']; ?> Millionen
+								<?= CONTENT['Auctions']['user']['amount']; ?> Mio. €
 							</td>
 						</tr>
 
