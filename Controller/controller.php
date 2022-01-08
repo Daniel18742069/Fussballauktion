@@ -30,11 +30,9 @@ class Controller
 			foreach ($Players as $Player) {
 
 				$player = $Player->get_all();
-				if (isset($Auctions[$Player->get_index()])) {
-					$player['worth'] = $Auctions[$Player->get_index()]->get_amount();
-				} else {
-					$player['worth'] = 0;
-				}
+				$player['worth'] = (isset($Auctions[$Player->get_index()]))
+					? $Auctions[$Player->get_index()]->get_amount()
+					: 0;
 
 				$this->content['Players'][$Player->get_index()] = $player;
 			}
