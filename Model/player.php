@@ -120,7 +120,7 @@ class Player
 		`team`
 		FROM player
 		WHERE
-		`name` LIKE "%' . $name . '%";';
+		`name` LIKE "' . $name . '%";';
 
 		$db = Database::open();
 		$results = $db->query($query, true)->fetch_all(MYSQLI_ASSOC);
