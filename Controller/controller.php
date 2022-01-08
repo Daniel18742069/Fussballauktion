@@ -86,8 +86,7 @@ class Controller
 				$this->content['Auctions']['current'] = $auction_current;
 
 				if (isset($_SESSION['user'])) {
-					$Auction_user = Auction::player($Player->get_index(), $_SESSION['user']);
-
+					$Auction_user = Auction::player_and_team($Player->get_index(), $_SESSION['user'], true);
 					if ($Auction_user) {
 						$Team_user = Team::get($Auction_user->get_team());
 						$auction_user = $Auction_user->get_all();

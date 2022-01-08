@@ -216,9 +216,9 @@ class Auction
 	}
 
 	/**
-	 * Returns highest Bidding or 0
+	 * Returns highest Bidding or NULL
 	 */
-	public static function player_and_team(int $player, int $team): Auction|null
+	public static function player_and_team(int $player, int $team, bool $force_return = false): Auction|null
 	{
 		$query = 'SELECT
 		id AS `index`,
@@ -236,6 +236,8 @@ class Auction
 		$result = $db->query($query, true)->fetch_array(MYSQLI_ASSOC);
 		$db->close();
 
+		$Auction = NULL;
+
 		if ($result) {
 			$Auction = new Auction(
 				$result['index'],
@@ -243,11 +245,16 @@ class Auction
 				$result['player'],
 				$result['amount']
 			);
-
-			return $Auction;
+		} elseif ($force_return) {
+			$Auction = new Auction(
+				0,
+				$team,
+				$player,
+				0
+			);
 		}
 
-		return NULL;
+		return $Auction;
 	}
 
 	public function auction(int $team, int $player): void
