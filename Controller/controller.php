@@ -107,7 +107,6 @@ class Controller
 		$Players = Player::search(REQUEST['name']);
 
 		if ($Players) {
-			$Players = Player::all();
 			$Auctions = Auction::all('player');
 			foreach ($Players as $Player) {
 
