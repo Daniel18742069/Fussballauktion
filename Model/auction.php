@@ -194,8 +194,7 @@ class Auction
 		FROM auction
 		WHERE
 		`team` = ' . $team . '
-		ORDER BY `player` DESC
-		LIMIT 1;';
+        GROUP BY `player` DESC;';
 
 		$db = Database::open();
 		$results = $db->query($query, true)->fetch_all(MYSQLI_ASSOC);

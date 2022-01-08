@@ -36,6 +36,15 @@ class Controller
 
 				$this->content['Players'][$Player->get_index()] = $player;
 			}
+
+			$Auctions_team = Auction::team($Team->get_index());
+			foreach ($Auctions_team as $Auction_team) {
+				$auction_team = $Auction_team->get_all();
+				$auction_team['player'] = $Players[$auction_team['player']]->get_name();
+				$auctions_team[$Auction_team->get_index()] = $auction_team;
+			}
+
+			$this->content['Auctions']['team'] = $auctions_team;
 		} else {
 
 			header('Location: index.php?act=login');
@@ -111,6 +120,16 @@ class Controller
 			} else {
 				$this->content['Error'] = file_get_contents('Error/player-404.txt');
 			}
+
+			$Players = Player::all();
+			$Auctions_team = Auction::team($Team->get_index());
+			foreach ($Auctions_team as $Auction_team) {
+				$auction_team = $Auction_team->get_all();
+				$auction_team['player'] = $Players[$auction_team['player']]->get_name();
+				$auctions_team[$Auction_team->get_index()] = $auction_team;
+			}
+
+			$this->content['Auctions']['team'] = $auctions_team;
 		} else {
 
 			header('Location: index.php?act=login');
@@ -139,6 +158,16 @@ class Controller
 			} else {
 				$this->content['Error'] = file_get_contents('Error/search-404.txt');
 			}
+
+			$Players = Player::all();
+			$Auctions_team = Auction::team($Team->get_index());
+			foreach ($Auctions_team as $Auction_team) {
+				$auction_team = $Auction_team->get_all();
+				$auction_team['player'] = $Players[$auction_team['player']]->get_name();
+				$auctions_team[$Auction_team->get_index()] = $auction_team;
+			}
+
+			$this->content['Auctions']['team'] = $auctions_team;
 		} else {
 
 			header('Location: index.php?act=login');
