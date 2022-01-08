@@ -62,100 +62,124 @@ class Controller
 
 	private function logout()
 	{
-		session_destroy();
+		if (isset($_SESSION['user'])) session_destroy();
 
-		header('Location: index.php?act=index');
+		header('Location: index.php?act=login');
 	}
 
 	private function player()
 	{
-		$Player = Player::get(REQUEST['index']);
+		if (isset($_SESSION['user'])) {
+			$Team = Team::get($_SESSION['user']);
+			$this->content['Team'] = $Team->get_all();
 
-		if ($Player) {
-			$player = $Player->get_all();
-			$player['picture'] = $Player->picture();
+			$Player = Player::get(REQUEST['index']);
 
-			$this->content['Player'] = $player;
+			if ($Player) {
+				$player = $Player->get_all();
+				$player['picture'] = $Player->picture();
 
-			$Auction_current = Auction::player($Player->get_index());
+				$this->content['Player'] = $player;
 
-			if ($Auction_current) {
-				$Team_current = Team::get($Auction_current->get_team());
-				$auction_current = $Auction_current->get_all();
-				$auction_current['team'] = $Team_current->get_name();
+				$Auction_current = Auction::player($Player->get_index());
 
-				$this->content['Auctions']['current'] = $auction_current;
+				if ($Auction_current) {
+					$Team_current = Team::get($Auction_current->get_team());
+					$auction_current = $Auction_current->get_all();
+					$auction_current['team'] = $Team_current->get_name();
 
-				if (isset($_SESSION['user'])) {
-					$Auction_user = Auction::player_and_team($Player->get_index(), $_SESSION['user'], true);
-					if ($Auction_user) {
-						$Team_user = Team::get($Auction_user->get_team());
-						$auction_user = $Auction_user->get_all();
-						$auction_user['team'] = $Team_user->get_name();
+					$this->content['Auctions']['current'] = $auction_current;
 
-						$this->content['Auctions']['user'] = $auction_user;
+					if (isset($_SESSION['user'])) {
+						$Auction_user = Auction::player_and_team($Player->get_index(), $_SESSION['user'], true);
+						if ($Auction_user) {
+							$Team_user = Team::get($Auction_user->get_team());
+							$auction_user = $Auction_user->get_all();
+							$auction_user['team'] = $Team_user->get_name();
+
+							$this->content['Auctions']['user'] = $auction_user;
+						}
 					}
+				} else {
+					$auction_current = [
+						'team' => 'Keiner',
+						'amount' => '0'
+					];
+
+					$this->content['Auctions']['current'] = $auction_current;
 				}
 			} else {
-				$auction_current = [
-					'team' => 'Keiner',
-					'amount' => '0'
-				];
-
-				$this->content['Auctions']['current'] = $auction_current;
+				$this->content['Error'] = file_get_contents('Error/player-404.txt');
 			}
 		} else {
-			$this->content['Error'] = file_get_contents('Error/player-404.txt');
+
+			header('Location: index.php?act=login');
 		}
 	}
 
 	private function search()
 	{
-		$Players = Player::search(REQUEST['name']);
+		if (isset($_SESSION['user'])) {
+			$Team = Team::get($_SESSION['user']);
+			$this->content['Team'] = $Team->get_all();
 
-		if ($Players) {
-			$Auctions = Auction::all('player');
-			foreach ($Players as $Player) {
+			$Players = Player::search(REQUEST['name']);
 
-				$player = $Player->get_all();
-				$player['worth'] = (isset($Auctions[$Player->get_index()]))
-					? $Auctions[$Player->get_index()]->get_amount()
-					: 0;
+			if ($Players) {
+				$Auctions = Auction::all('player');
+				foreach ($Players as $Player) {
 
-				$this->content['Players'][$Player->get_index()] = $player;
+					$player = $Player->get_all();
+					$player['worth'] = (isset($Auctions[$Player->get_index()]))
+						? $Auctions[$Player->get_index()]->get_amount()
+						: 0;
+
+					$this->content['Players'][$Player->get_index()] = $player;
+				}
+			} else {
+				$this->content['Error'] = file_get_contents('Error/search-404.txt');
 			}
 		} else {
-			$this->content['Error'] = file_get_contents('Error/search-404.txt');
+
+			header('Location: index.php?act=login');
 		}
 	}
 
 	private function auction()
 	{
-		$Player = Player::get(REQUEST['player']);
-
-		if (isset($_SESSION['user']) && $Player) {
+		if (isset($_SESSION['user'])) {
 			$Team = Team::get($_SESSION['user']);
-			$Auction_user = Auction::player_and_team($Player->get_index(), $Team->get_index());
-			$Auction_current = Auction::player($Player->get_index(), $Team->get_index());
+			$this->content['Team'] = $Team->get_all();
 
-			$invested = ($Auction_user)
-				? $Auction_user->get_amount()
-				: 0;
+			$Player = Player::get(REQUEST['player']);
 
-			$amount = ($Auction_current)
-				? $Auction_current->get_amount() + 1
-				: 1;
+			if ($Player) {
+				$Team = Team::get($_SESSION['user']);
+				$Auction_user = Auction::player_and_team($Player->get_index(), $Team->get_index());
+				$Auction_current = Auction::player($Player->get_index(), $Team->get_index());
 
-			$difference = $amount - $invested;
+				$invested = ($Auction_user)
+					? $Auction_user->get_amount()
+					: 0;
 
-			if ($Team->get_budget() >= $difference) {
-				$Auction_current->auction($Team->get_index(), $Player->get_index());
+				$amount = ($Auction_current)
+					? $Auction_current->get_amount() + 1
+					: 1;
 
-				$Team->auction($difference);
+				$difference = $amount - $invested;
+
+				if ($Team->get_budget() >= $difference) {
+					$Auction_current->auction($Team->get_index(), $Player->get_index());
+
+					$Team->auction($difference);
+				}
 			}
-		}
 
-		header('Location: index.php?act=player&index=' . REQUEST['player']);
+			header('Location: index.php?act=player&index=' . REQUEST['player']);
+		} else {
+
+			header('Location: index.php?act=login');
+		}
 	}
 
 	private function load_page(string $page)
