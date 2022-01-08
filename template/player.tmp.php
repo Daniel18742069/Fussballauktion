@@ -42,7 +42,7 @@
 		<?php else : ?>
 
 			<div class="player-image">
-				<img style="-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;" src="https://img.a.transfermarkt.technology/portrait/big/616228-1630075221.jpg?lm=1">
+				<img style="-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;" src="<?= CONTENT['Player']['picture']; ?>">
 			</div>
 
 			<table>
