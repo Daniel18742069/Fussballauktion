@@ -74,6 +74,7 @@ class Controller
 		if ($Player) {
 			$this->content['Player'] = $Player->get_all();
 
+			// Auction
 			$Auction_current = Auction::player($Player->get_index());
 
 			if ($Auction_current) {
@@ -93,6 +94,13 @@ class Controller
 						$this->content['Auctions']['user'] = $auction_user;
 					}
 				}
+			} else {
+				$auction_current = [
+					'team' => 'Keiner',
+					'amount' => '0'
+				];
+
+				$this->content['Auctions']['current'] = $auction_current;
 			}
 		} else {
 			$this->content['Error'] = file_get_contents('Error/player-404.txt');
