@@ -107,8 +107,18 @@ class Controller
 		$Players = Player::search(REQUEST['name']);
 
 		if ($Players) {
+			$Players = Player::all();
+			$Auctions = Auction::all('player');
 			foreach ($Players as $Player) {
-				$this->content['Players'][$Player->get_index()] = $Player->get_all();
+
+				$player = $Player->get_all();
+				if (isset($Auctions[$Player->get_index()])) {
+					$player['worth'] = $Auctions[$Player->get_index()]->get_amount();
+				} else {
+					$player['worth'] = 0;
+				}
+
+				$this->content['Players'][$Player->get_index()] = $player;
 			}
 		} else {
 			$this->content['Error'] = file_get_contents('Error/search-404.txt');
