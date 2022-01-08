@@ -150,7 +150,7 @@ class Player
 		$rows = explode(';', $file);
 		foreach ($rows as $row) {
 			$values = explode('|', $row);
-			if ($values[0] == $this->name) {
+			if (trim($values[0]) === $this->name) {
 				return $values[1];
 			}
 		}
