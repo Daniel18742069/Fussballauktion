@@ -150,7 +150,7 @@ class Team
 		$result = $db->query($query, true)->fetch_array(MYSQLI_ASSOC);
 		$db->close();
 
-		if ($result['password'] == $password) {
+		if ($result && $result['password'] == $password) {
 			return $result['index'];
 		}
 
