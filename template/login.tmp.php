@@ -10,9 +10,6 @@
 </head>
 
 <body>
-	<header>
-		<h1>Kaufen Sie internationale Fußball-Stars zum Top-Preis</h1>
-	</header>
 
 	<div class="bg-image"></div>
 

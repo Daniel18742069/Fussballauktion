@@ -50,7 +50,7 @@
 
 		</nav>
 	</header>
-	
+
 	<main>
 		<table>
 
