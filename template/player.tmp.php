@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html class="html-player">
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Chivo:300,700|Playfair+Display:700i" rel="stylesheet">
 	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/player.css" media="screen" />
+	<link rel="stylesheet" href="css/index.css" media="screen" />
 	<title>Fussballauktion</title>
 </head>
 
-<body>
+<body class="body-player">
 	<header>
 		<!--Website Logo-->
 		<a href="index.php" class="logo"><img src="Bilder/header.png" alt="Football Maniacs!"></a>
@@ -31,7 +31,7 @@
 		<?php endif; ?>
 	</header>
 
-	<main>
+	<main class="main-player">
 		<!--Errormessage-->
 		<?php if (isset(CONTENT['Error'])) : ?>
 

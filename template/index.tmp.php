@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html class="html-index">
 
 <head>
-	<link rel="stylesheet" href="css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
@@ -10,8 +9,8 @@
 	<title>Fussballauktion</title>
 </head>
 
-<body>
-	<header>
+<body class="body-index">
+	<header class="header-index">
 		<!--Website Logo-->
 		<a href="index.php" class="logo"><img src="Bilder/header.png" alt="Football Maniacs!"></a>
 

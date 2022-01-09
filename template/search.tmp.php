@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="html-search">
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,13 +8,10 @@
 	<title>Searchbar</title>
 </head>
 
-<body>
+<body class="body-search">
 	<header>
 		<!--Website Logo-->
-		<img src="Bilder/header.png">
-		<h1>
-			<a href="index.php">Football Maniacs!</a>
-		</h1>
+			<a href="index.php" class="logo"><img src="Bilder/header.png" alt="Football Maniacs!"></a>
 
 		<!--Searchbar-->
 		<?php include 'Include/searchbar.html'; ?>

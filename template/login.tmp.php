@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html class="html-login">
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
 	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/login.css" media="screen" />
+	<link rel="stylesheet" href="css/index.css" media="screen" />
 	<title>Sign in</title>
 </head>
 
@@ -21,7 +21,7 @@
 				<input name="act" type="hidden" value="login" />
 				<input class="un" name="name" type="text" align="center" placeholder="Benutzername" />
 				<input class="pass" name="pass" type="password" align="center" placeholder="Passwort" />
-				<input name="submit" type="submit" class="submit" align="center" value="Anmelden" />
+				<input name="submit" type="submit" class="submit-login" align="center" value="Anmelden" />
 			</form>
 		</div>
 	</main>
