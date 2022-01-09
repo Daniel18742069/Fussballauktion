@@ -5,7 +5,7 @@ $gradient2: linear-gradient(to bottom, #20962A 0%, #5DE368 187%);
 
 body,
 html {
-  
+
   width: 100%;
   height: 100%;
   font-family: 'lato', sans-serif;
@@ -18,13 +18,17 @@ html {
 
 body {
 
-  
   overflow-y: visible;
+
+  header {
+    position: sticky;
+    top: 0;
+    padding: 0px;
+  }
 
   .logo {
     margin: 0;
     padding: 0;
-    position: relative;
   }
 
   .tabelle {
@@ -61,13 +65,12 @@ h2 {
 }
 
 .responsive-table {
+  
   li {
-    border-radius: 3px;
-    padding: 25px 30px;
+    border-radius: 50px;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 25px;
-    border: 5px solid black;
+    border: 2px solid black;
   }
 
   .table-header {
@@ -75,7 +78,11 @@ h2 {
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.03em;
+    position: -webkit-sticky;
     position: sticky;
+    left: 0;
+    z-index: 1;
+    top: 200px;
   }
 
   .table-row {
@@ -133,64 +140,65 @@ h2 {
     }
   }
 }
+
 nav {
 
-.mode-toggle {
-  background: black;
-  position: absolute;
-  right: 50px;
-  top: 50px;
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-  z-index: 2;
-  transition: 1000ms;
-  border-radius: 50%;
-}
-
-.mode-toggle.active {
-  background-color: white;
-  transition: 1000ms;
-}
-
-.container {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  right: 50px;
-  top: 50px;
-  width: 20px;
-  height: 20px;
-}
-
-.dark-mode {
-  position: relative;
-  transform: scale(0);
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 250vw;
-  height: 250vw;
-  border-radius: 50%;
-  background: $gradient1;
-  transition: 1000ms ease-in-out;
-  display: flex;
-  flex: 0 0 auto;
-}
-
-.dark-mode.active {
-  transform: scale(1);
-  transition: 1000ms ease-in-out;
-
-}
-
-@media screen and (max-width: 600px) {
-  .dark-mode {
-    width: 250vh;
-    height: 250vh;
+  .mode-toggle {
+    background: black;
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    z-index: 2;
+    transition: 1000ms;
+    border-radius: 50%;
   }
-}
+
+  .mode-toggle.active {
+    background-color: white;
+    transition: 1000ms;
+  }
+
+  .container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 50px;
+    top: 50px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .dark-mode {
+    position: relative;
+    transform: scale(0);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 250vw;
+    height: 250vw;
+    border-radius: 50%;
+    background: $gradient1;
+    transition: 1000ms ease-in-out;
+    display: flex;
+    flex: 0 0 auto;
+  }
+
+  .dark-mode.active {
+    transform: scale(1);
+    transition: 1000ms ease-in-out;
+
+  }
+
+  @media screen and (max-width: 600px) {
+    .dark-mode {
+      width: 250vh;
+      height: 250vh;
+    }
+  }
 
 }

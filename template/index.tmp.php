@@ -29,27 +29,28 @@
 			<!--Login-->
 			<?php include 'Include/login.html'; ?>
 		<?php endif; ?>
+
+
+		<!--Dark Mode-->
+		<nav>
+			<div class="mode-toggle"></div>
+			<div class="container">
+				<div class="dark-mode"></div>
+			</div>
+
+			<script>
+				let modeToggle = document.querySelector('.mode-toggle');
+				let darkMode = document.querySelector('.dark-mode');
+
+				modeToggle.addEventListener('click', () => {
+					darkMode.classList.toggle('active');
+					modeToggle.classList.toggle('active');
+				})
+			</script>
+
+		</nav>
 	</header>
-
-	<!--Dark Mode-->
-	<nav>
-		<div class="mode-toggle"></div>
-		<div class="container">
-			<div class="dark-mode"></div>
-		</div>
-
-		<script>
-			let modeToggle = document.querySelector('.mode-toggle');
-			let darkMode = document.querySelector('.dark-mode');
-
-			modeToggle.addEventListener('click', () => {
-				darkMode.classList.toggle('active');
-				modeToggle.classList.toggle('active');
-			})
-		</script>
-
-	</nav>
-
+	
 	<main>
 		<table>
 
