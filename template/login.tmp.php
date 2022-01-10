@@ -10,7 +10,7 @@
 </head>
 
 <body>
-
+	
 	<div class="bg-image"></div>
 
 	<main>
@@ -19,9 +19,11 @@
 			<p class="sign" align="center">Login</p>
 			<form class="form1" action="index.php" method="post">
 				<input name="act" type="hidden" value="login" />
-				<input class="un" name="name" type="text" align="center" placeholder="Benutzername" />
-				<input class="pass" name="pass" type="password" align="center" placeholder="Passwort" />
+				<input class="un" name="name" type="text" align="center" placeholder="Benutzername" required />
+				<input class="pass" name="pass" type="password" align="center" placeholder="Passwort" required />
 				<input name="submit" type="submit" class="submit-login" align="center" value="Anmelden" />
+				<div class="validation-username"></div>
+				<div class="validation-password"></div>
 			</form>
 		</div>
 	</main>
