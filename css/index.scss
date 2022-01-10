@@ -2,6 +2,7 @@
 
 $gradient1: linear-gradient(to bottom, #0e1111 0%, #414a4c 187%);
 $gradient2: linear-gradient(to bottom, #20962A 0%, #5DE368 187%);
+$gradient3: linear-gradient(to bottom, #5e5e5e 0%, #3b3b3b 90%);
 
 :root {
   --bg-color: black;
@@ -32,9 +33,46 @@ $gradient2: linear-gradient(to bottom, #20962A 0%, #5DE368 187%);
   overflow-y: visible;
 
   header {
+    background: $gradient3;
     position: sticky;
     top: 0;
     padding: 0px;
+    height: 20vh;
+
+    .logo {
+
+      img {
+        display: inline;
+        height: 18vh;
+        margin: 1vh 0 0 1vw;
+      }
+    }
+
+    #searchbar {
+      display: inline;
+    }
+
+    #logout {
+      position: absolute;
+      top: 7vh;
+      right: 3vw;
+
+      cursor: pointer;
+      border-radius: 5em;
+      color: #fff;
+      //background: linear-gradient(to right, #9C27B0, #E040FB);
+      background: linear-gradient(to right, #20962A, #5DE368);
+      border: 0;
+      padding-left: 40px;
+      padding-right: 40px;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      font-family: 'Ubuntu', sans-serif;
+      margin-top: 10px;
+      margin-left: 35%;
+      font-size: 13px;
+      box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    }
   }
 
   .logo {
@@ -136,11 +174,11 @@ $gradient2: linear-gradient(to bottom, #20962A 0%, #5DE368 187%);
 }
 
 .search-box {
+  position: absolute;
+  top: 7vh;
+  left: 49vw;
   width: fit-content;
   height: fit-content;
-  position: relative;
-  left: 70em;
-  bottom: 8em;
   z-index: 2;
 }
 
@@ -346,27 +384,6 @@ form.form1 {
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
   position: relative;
   top: 30px;
-}
-
-.submit-logout {
-  cursor: pointer;
-  border-radius: 5em;
-  color: #fff;
-  //background: linear-gradient(to right, #9C27B0, #E040FB);
-  background: linear-gradient(to right, #20962A, #5DE368);
-  border: 0;
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  font-family: 'Ubuntu', sans-serif;
-  margin-top: 10px;
-  margin-left: 35%;
-  font-size: 13px;
-  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
-  position: relative;
-  left: 1400px;
-  bottom: 150px;
 }
 
 .logo {

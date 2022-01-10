@@ -6,13 +6,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/index.css" media="screen" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/index.css" media="screen" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/index.css" media="screen" />
 	<title>Fussballauktion</title>
 </head>
 
 <body class="body-index">
 	<header class="header-index">
 		<!--Website Logo-->
-		<a href="index.php" class="logo"><img src="Bilder/header.png" alt="Football Maniacs!"></a>
+		<a href="index.php" class="logo"><img id="logo" src="Bilder/logo.png" alt="Football Maniacs!"></a>
 
 		<!--Searchbar-->
 		<?php include 'Include/searchbar.html'; ?>

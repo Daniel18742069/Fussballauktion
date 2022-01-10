@@ -11,7 +11,7 @@
 <body class="body-search">
 	<header>
 		<!--Website Logo-->
-			<a href="index.php" class="logo"><img src="Bilder/header.png" alt="Football Maniacs!"></a>
+			<a href="index.php" class="logo"><img src="Bilder/logo.png" alt="Football Maniacs!"></a>
 
 		<!--Searchbar-->
 		<?php include 'Include/searchbar.html'; ?>
