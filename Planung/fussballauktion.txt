@@ -1,11 +1,11 @@
-Player {
+player {
 	PK id: INTEGER,
 	name: VARCHAR(64),
 	position: VARCHAR(1),
 	team: VARCHAR(64)
 }
 
-Team {
+team {
 	PK id: INTEGER,
 	name: VARCHAR(64),
 	budget: INTEGER,
