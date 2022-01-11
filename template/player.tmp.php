@@ -117,6 +117,10 @@
 
 		<?php endif; ?>
 	</main>
+
+	<?php if (isset(CONTENT['Team']['Auctions'])) :
+		include 'Include/auctioning.php';
+	endif; ?>
 </body>
 
 </html>

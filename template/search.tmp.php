@@ -11,7 +11,7 @@
 <body class="body-search">
 	<header>
 		<!--Website Logo-->
-			<a href="index.php" class="logo"><img src="Bilder/logo.png" alt="Football Maniacs!"></a>
+		<a href="index.php" class="logo"><img src="Bilder/logo.png" alt="Football Maniacs!"></a>
 
 		<!--Searchbar-->
 		<?php include 'Include/searchbar.html'; ?>
@@ -33,7 +33,7 @@
 
 
 	<main>
-	<!--Errormessage-->
+		<!--Errormessage-->
 		<?php if (isset(CONTENT['Error'])) : ?>
 
 			<p id="error_message">
@@ -41,46 +41,47 @@
 			</p>
 
 		<?php else : ?>
-		<table>
+			<table>
 
-			<div class="container">
-				<ul class="responsive-table">
-					<li class="table-header">
-						<div class="col col-1">Name</div>
-						<div class="col col-2">Position</div>
-						<div class="col col-3">Team</div>
-						<div class="col col-4">Wert</div>
-					</li>
-
-					<?php foreach (CONTENT['Players'] as $Player) : ?>
-
-						<li class="table-row" onclick="window.location='index.php?act=player&index=<?= $Player['index']; ?>'">
-							<div class="col col-1">
-								<?= $Player['name']; ?>
-								</a>
-							</div>
-							<div class="col col-2">
-								<?= $Player['position']; ?>
-							</div>
-							<div class="col col-3">
-								<?= $Player['team']; ?>
-							</div>
-							<div class="col col-4">
-								<?= $Player['worth']; ?>
-							</div>
+				<div class="container">
+					<ul class="responsive-table">
+						<li class="table-header">
+							<div class="col col-1">Name</div>
+							<div class="col col-2">Position</div>
+							<div class="col col-3">Team</div>
+							<div class="col col-4">Wert</div>
 						</li>
-					<?php endforeach; ?>
-				</ul>
 
-			</div>
+						<?php foreach (CONTENT['Players'] as $Player) : ?>
 
-		</table>
+							<li class="table-row" onclick="window.location='index.php?act=player&index=<?= $Player['index']; ?>'">
+								<div class="col col-1">
+									<?= $Player['name']; ?>
+									</a>
+								</div>
+								<div class="col col-2">
+									<?= $Player['position']; ?>
+								</div>
+								<div class="col col-3">
+									<?= $Player['team']; ?>
+								</div>
+								<div class="col col-4">
+									<?= $Player['worth']; ?>
+								</div>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+
+				</div>
+
+			</table>
 		<?php endif; ?>
 
 	</main>
-	
 
-
+	<?php if (isset(CONTENT['Team']['Auctions'])) :
+		include 'Include/auctioning.php';
+	endif; ?>
 
 </body>
 

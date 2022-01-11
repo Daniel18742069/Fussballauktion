@@ -3,7 +3,6 @@
 
 <head>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
-	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/index.css" media="screen" />
 	<title>Fussballauktion</title>
@@ -29,28 +28,9 @@
 			<?php include 'Include/login.html'; ?>
 		<?php endif; ?>
 
-
-		<!--Dark Mode-->
-		<nav>
-			<div class="mode-toggle"></div>
-			<div class="container">
-				<div class="dark-mode"></div>
-			</div>
-
-			<script>
-				let modeToggle = document.querySelector('.mode-toggle');
-				let darkMode = document.querySelector('.dark-mode');
-
-				modeToggle.addEventListener('click', () => {
-					darkMode.classList.toggle('active');
-					modeToggle.classList.toggle('active');
-				})
-			</script>
-
-		</nav>
 	</header>
 
-	<p class="logged-in-as">Eingeloggt als</p>
+	<p class="logged-in-as">Eingeloggt als <?= CONTENT['Team']['name']; ?></p>
 
 	<main>
 		<table>
@@ -88,8 +68,11 @@
 
 		</table>
 
-
 	</main>
+
+	<?php if (isset(CONTENT['Team']['Auctions'])) :
+		include 'Include/auctioning.php';
+	endif; ?>
 
 </body>
 
