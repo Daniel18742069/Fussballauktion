@@ -81,7 +81,7 @@ class Player
 	/**
 	 * Returns Player from index
 	 */
-	public static function get(int $index): Player|null
+	public static function get(int $index): mixed
 	{
 		$query = 'SELECT
 		`id` AS `index`,
@@ -111,7 +111,7 @@ class Player
 	 * Returns Player array on success,
 	 * false on failure.
 	 */
-	public static function search(string $name): array|bool
+	public static function search(string $name): mixed
 	{
 		$query = 'SELECT
 		`id` AS `index`,

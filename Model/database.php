@@ -16,7 +16,7 @@ class Database
 	private string $user = 'root';
 	private string $password = '';
 	private string $database = 'phpmyadmin';
-	private \mysqli|false|null $connection = NULL;
+	private mixed $connection = NULL;
 
 	/**
 	 * Prohibited! Use open().
@@ -57,9 +57,9 @@ class Database
 	 * 
 	 * @param string $query
 	 * @param string $return default|false: return NULL
-	 * @return \mysqli_result|bool|null
+	 * @return mixed
 	 */
-	public function query(string $query, bool $return = false): \mysqli_result|bool|null
+	public function query(string $query, bool $return = false): mixed
 	{
 		try {
 			if ($return) {

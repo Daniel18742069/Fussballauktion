@@ -117,7 +117,7 @@ class Auction
 	/**
 	 * Returns Auction from index
 	 */
-	public static function get(int $index): Auction|null
+	public static function get(int $index): mixed
 	{
 		$query = 'SELECT
 		id AS `index`,
@@ -146,7 +146,7 @@ class Auction
 		return NULL;
 	}
 
-	public static function player(int $player, int|bool $team = false): Auction|null
+	public static function player(int $player, mixed $team = false): mixed
 	{
 		$query = 'SELECT
 		id AS `index`,
@@ -217,7 +217,7 @@ class Auction
 	/**
 	 * Returns highest Bidding or NULL
 	 */
-	public static function player_and_team(int $player, int $team, bool $force_return = false): Auction|null
+	public static function player_and_team(int $player, int $team, bool $force_return = false): mixed
 	{
 		$query = 'SELECT
 		id AS `index`,
