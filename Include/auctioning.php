@@ -1,7 +1,7 @@
 <table id="auctioning">
 	<thead>
 		<th>Spieler</th>
-		<th>Investiert</th>
+		<th>Geboten</th>
 	</thead>
 	<?php foreach (CONTENT['Team']['Auctions'] as $Auctions) : ?>
 		<tr>

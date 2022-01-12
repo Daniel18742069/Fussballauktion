@@ -9,6 +9,11 @@ $gradient4: linear-gradient(to top, #979797 0%, #ebe9eb 100%);
 $gradient5: linear-gradient(to bottom, #797676 0%, #c2c2c2 100%);
 $gradient6: linear-gradient(to top, #05ff19 0%, #dfdfdf 50%, #00ff4c 100%);
 
+#auctioning {
+  text-align: center;
+}
+
+
 body {
 	margin: 0px;
 	padding: 0px;
@@ -45,6 +50,7 @@ body {
 	background-attachment: fixed;
 	overflow-x: hidden;
 	overflow-y: hidden;
+
 }
 
 .body-index {
@@ -75,6 +81,8 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
   }
+
+
 }
 
 .body-search {
