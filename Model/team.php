@@ -107,7 +107,7 @@ class Team
 	/**
 	 * Returns Team from index
 	 */
-	public static function get(int $index): Team|null
+	public static function get(int $index): mixed
 	{
 		$query = 'SELECT
 		id AS `index`,
@@ -137,7 +137,7 @@ class Team
 	/**
 	 * Returns Integer on success or Boolean on failure
 	 */
-	public static function login(string $username, string $password): int|bool
+	public static function login(string $username, string $password): mixed
 	{
 		$query = 'SELECT
 		`id` AS `index`,
