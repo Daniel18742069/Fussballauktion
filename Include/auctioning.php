@@ -6,7 +6,7 @@
 	<?php foreach (CONTENT['Team']['Auctions'] as $Auctions) : ?>
 		<tr>
 			<td><?= $Auctions['player']; ?></td>
-			<td><?= $Auctions['amount']; ?></td>
+			<td><?= $Auctions['amount'] . " Mio. €"; ?></td>
 		</tr>
 	<?php endforeach; ?>
 </table>
