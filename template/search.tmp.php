@@ -77,9 +77,11 @@
 
 	</main>
 	
+	<div id="block">
 	<?php if (isset(CONTENT['Team']['Auctions'])) :
 		include 'Include/auctioning.php';
 	endif; ?>
+	</div>
 
 	<footer>
 		<ul>
