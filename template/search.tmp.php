@@ -30,8 +30,6 @@
 		<?php endif; ?>
 	</header>
 
-	<p class="logged-in-as">Eingeloggt als</p>
-
 	<main>
 	<!--Errormessage-->
 		<?php if (isset(CONTENT['Error'])) : ?>
@@ -118,6 +116,9 @@
 				</a>
 			</li>
 		</ul>
+
+		<p class="logged-in-as">Eingeloggt als <?= CONTENT['Team']['name']; ?></p>
+
 	</footer>
 
 </body>

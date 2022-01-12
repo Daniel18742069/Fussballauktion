@@ -3,10 +3,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 $gradient1: linear-gradient(to bottom, #0e1111 0%, #414a4c 187%);
-$gradient2: linear-gradient(to bottom, #20962A 0%, #5DE368 187%);
+$gradient2: linear-gradient(to right, #20962A 0%, #5DE368 187%);
 $gradient3: linear-gradient(to bottom, #5e5e5e 0%, #3b3b3b 90%);
-$gradient4: linear-gradient(to top, #979797 0%, #ebe9eb);
-$gradient5: linear-gradient(to bottom, #797676 0%, #c2c2c2);
+$gradient4: linear-gradient(to top, #979797 0%, #ebe9eb 100%);
+$gradient5: linear-gradient(to bottom, #797676 0%, #c2c2c2 100%);
+$gradient6: linear-gradient(to top, #05ff19 0%, #dfdfdf 50%, #00ff4c 100%);
 
 :root {
   --bg-color: black;
@@ -49,6 +50,7 @@ $gradient5: linear-gradient(to bottom, #797676 0%, #c2c2c2);
     position: sticky;
     top: 0;
     height: 20vh;
+    z-index: 2;
 
     .logo {
 
@@ -70,11 +72,6 @@ $gradient5: linear-gradient(to bottom, #797676 0%, #c2c2c2);
   }
 }
 
-.body-search,
-.html-search {
-
-}
-
 .body-search {
   width: 100%;
   height: 100%;
@@ -87,9 +84,9 @@ $gradient5: linear-gradient(to bottom, #797676 0%, #c2c2c2);
   header {
     background: $gradient5;
     position: sticky;
-
     top: 0;
     height: 20vh;
+    z-index: 2;
 
     .logo {
 
@@ -105,7 +102,7 @@ $gradient5: linear-gradient(to bottom, #797676 0%, #c2c2c2);
 }
 
 .html-player {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'lato', sans-serif;
   width: 100%;
   height: 100%;
 
@@ -120,6 +117,7 @@ $gradient5: linear-gradient(to bottom, #797676 0%, #c2c2c2);
       top: 0;
       padding: 0px;
       height: 20vh;
+      z-index: 2;
 
       .logo {
 
@@ -185,8 +183,8 @@ $gradient5: linear-gradient(to bottom, #797676 0%, #c2c2c2);
 
 .search-box {
   position: absolute;
-  top: 7vh;
-  left: 49vw;
+  top: 12vh;
+  left: 45vw;
   width: fit-content;
   height: fit-content;
   z-index: 2;
@@ -194,14 +192,14 @@ $gradient5: linear-gradient(to bottom, #797676 0%, #c2c2c2);
 
 .input-search {
   height: 50px;
-  width: 55px;
+  width: 175px;
   border-style: none;
   padding-left: 5px;
   padding-bottom: 0;
   font-size: 18px;
   letter-spacing: 2px;
   outline: none;
-  border-radius: 25px;
+  border-radius: 40px;
   transition: all .4s ease-in-out;
   background-color: #858a8b;
   padding-right: 40px;
@@ -250,8 +248,12 @@ $gradient5: linear-gradient(to bottom, #797676 0%, #c2c2c2);
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-top: 0px;
+  padding-left: 0px;
+  padding-right: 30px;
+  background: $gradient5;
+  border: 0.1px solid black;
+  z-index: 0;
 }
 
 .responsive-table {
@@ -264,7 +266,7 @@ $gradient5: linear-gradient(to bottom, #797676 0%, #c2c2c2);
   }
 
   .table-header {
-    background-color: #95A5A6;
+    background: $gradient2;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.03em;
@@ -272,16 +274,16 @@ $gradient5: linear-gradient(to bottom, #797676 0%, #c2c2c2);
     position: sticky;
     left: 0;
     z-index: 1;
-    top: 195px;
+    top: 20vh;
   }
 
   .table-row {
-    background-color: #ffffff;
+    background: $gradient4;
     box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
   }
 
   .table-row:hover {
-    background-color: #aeb6b0;
+    background: $gradient6;
     cursor: pointer;
   }
 
@@ -316,7 +318,6 @@ $gradient5: linear-gradient(to bottom, #797676 0%, #c2c2c2);
 
 .sign {
   padding-top: 40px;
-  //color: #8C55AA;
   color: #20962A;
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
@@ -466,11 +467,11 @@ input:invalid~.validation-password {
 .submit-logout {
   height: 3vh;
   position: absolute;
-  top: 12vh;
+  top: 93vh;
   right: 3vw;
   cursor: pointer;
   border-radius: 5em;
-  color: black;
+  color: rgb(39, 38, 38);
   //background: linear-gradient(to right, #9C27B0, #E040FB);
   background: linear-gradient(to right, #20962A, #5DE368);
   border: 0;
@@ -481,8 +482,9 @@ input:invalid~.validation-password {
   font-family: 'Ubuntu', sans-serif;
   margin-top: 10px;
   margin-left: 35%;
-  font-size: 13px;
+  font-size: 16px;
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+  z-index: 3;
 }
 
 .submit-logout::before {
@@ -497,8 +499,8 @@ input:invalid~.validation-password {
 .main-player {
   position: relative;
   top: 100px;
-  color: white;
-  background: linear-gradient(to bottom, #141414 0%, #363636 100%);
+  color: #292828;
+  background: $gradient4;
   background-attachment: fixed;
   width: 1200px;
   height: 394px;
@@ -507,6 +509,7 @@ input:invalid~.validation-password {
   border: 0.5em solid #0e1111 #414a4c #0e1111 #414a4c;
   box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.9);
   box-sizing: border-box;
+  
 
 
   .player-image {
@@ -519,102 +522,67 @@ input:invalid~.validation-password {
     }
   }
 
-  table {
+  .player-info {
     position: relative;
     left: 310px;
-    bottom: 395px;
-    border: 5px double white;
+    bottom: 380px;
     border-radius: 5px;
     width: 400px;
     height: 100px;
+    text-align: center;
+    border-bottom: 5px solid black;
+    border-top: 5px solid black;
 
 
     thead {
       font-size: 25px;
+      
+    }
+  }
+
+  .bieten-info {
+    position: relative;
+    left: 310px;
+    bottom: 250px;
+    border-radius: 5px;
+    width: 400px;
+    height: 100px;
+    text-align: center;
+    border-bottom: 5px solid black;
+    border-top: 5px solid black;
+
+
+    thead {
+      font-size: 25px;
+      
     }
 
   }
 }
 
+
 .btn-bieten {
-  position: relative;
-  left: 800px;
-  bottom: 200px;
-  display: block;
-  padding: 15px 30px;
-  color: var(--primary-color);
-  text-transform: uppercase;
-  letter-spacing: 18px;
-  text-decoration: none;
-  font-size: 36px;
-  overflow: hidden;
-  transition: 0.2s;
-  width: 300px;
-}
-
-.btn-bieten:hover {
-  color: var(--secondary-color);
-  background: var(--primary-color);
-  box-shadow: 0 0 20px var(--primary-color), 0 0 80px var(--primary-color),
-    0 0 160px var(--primary-color), 0 0 320px var(--primary-color);
-  transition-delay: 1s;
-}
-
-.btn-bieten span {
+  height: 3vh;
   position: absolute;
-  display: block;
-}
+  top: 25vh;
+  right: 3vw;
+  cursor: pointer;
+  border-radius: 5em;
+  color: rgb(39, 38, 38);
+  //background: linear-gradient(to right, #9C27B0, #E040FB);
+  background: gold;
+  border: 0;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-family: 'Ubuntu', sans-serif;
+  margin-top: 10px;
+  margin-left: 35%;
+  font-size: 16px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+  z-index: 3;
 
-.btn-bieten span:nth-child(1) {
-  top: 0;
-  transform: translateX(-115%);
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, transparent, var(--primary-color));
-}
-
-.btn-bieten:hover span:nth-child(1) {
-  transform: translateX(100%);
-  transition: 1s;
-}
-
-.btn-bieten span:nth-child(3) {
-  bottom: 0;
-  transform: translateX(100%);
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(270deg, transparent, var(--primary-color));
-}
-
-.btn-bieten:hover span:nth-child(3) {
-  transform: translateX(-115%);
-  transition: 1s 0.5s;
-}
-
-.btn-bieten span:nth-child(2) {
-  right: 0;
-  transform: translateY(-130%);
-  width: 4px;
-  height: 100%;
-  background: linear-gradient(180deg, transparent, var(--primary-color));
-}
-
-.btn-bieten:hover span:nth-child(2) {
-  transform: translateY(100%);
-  transition: 1s 0.25s;
-}
-
-.btn-bieten span:nth-child(4) {
-  left: 0;
-  transform: translateY(100%);
-  width: 4px;
-  height: 100%;
-  background: linear-gradient(360deg, transparent, var(--primary-color));
-}
-
-.btn-bieten:hover span:nth-child(4) {
-  transform: translateY(-130%);
-  transition: 1s 0.75s;
 }
 
 
@@ -626,7 +594,7 @@ input:invalid~.validation-password {
   overflow-x: hidden;
   right: 0;
   top: 21vh;
-  background: white;
+  background: $gradient5;
 
 }
 
@@ -782,6 +750,8 @@ footer {
     color: #dd4b39;
   }
 
+
+  
 }
 
 
