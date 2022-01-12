@@ -4,6 +4,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/index.css" media="screen" />
 	<title>Searchbar</title>
 </head>
@@ -29,8 +30,7 @@
 		<?php endif; ?>
 	</header>
 
-
-
+	<p class="logged-in-as">Eingeloggt als</p>
 
 	<main>
 	<!--Errormessage-->
@@ -79,8 +79,46 @@
 
 	</main>
 	
-
-
+	<footer>
+		<ul>
+			<li>
+				<a class="paypal" href="https://downloadmoreram.com">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<i class="fa fa-facebook-square" aria-hidden="true"></i>
+				</a>
+			</li>
+			<li>
+				<a class="twitter" href="https://twitter.com/rickastley?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<i class="fa fa-twitter" aria-hidden="true"></i>
+				</a>
+			</li>
+			<li>
+				<a class="instagram" href="https://www.instagram.com/officialrickastley/?hl=de">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<i class="fa fa-instagram" aria-hidden="true"></i>
+				</a>
+			</li>
+			<li>
+				<a class="youtube" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<i class="fa fa-youtube" aria-hidden="true"></i>
+				</a>
+			</li>
+		</ul>
+	</footer>
 
 </body>
 
