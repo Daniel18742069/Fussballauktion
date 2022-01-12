@@ -30,8 +30,6 @@
 
 	</header>
 
-	<p class="logged-in-as">Eingeloggt als <?= CONTENT['Team']['name']; ?></p>
-
 	<main>
 		<table>
 
@@ -58,7 +56,7 @@
 								<?= $Player['team']; ?>
 							</div>
 							<div class="col col-4">
-								<?= $Player['worth']; ?>
+								<?= $Player['worth']; ?> Mio. €
 							</div>
 						</li>
 					<?php endforeach; ?>
@@ -73,6 +71,55 @@
 	<?php if (isset(CONTENT['Team']['Auctions'])) :
 		include 'Include/auctioning.php';
 	endif; ?>
+
+	<div id="block">
+		Moinvfntrhchtfvhtfczrdczrmh
+	</div>
+
+	<footer>
+		<ul>
+			<li>
+				<a class="facebook" href="https://downloadmoreram.com">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<i class="fa fa-facebook-square" aria-hidden="true"></i>
+				</a>
+			</li>
+			<li>
+				<a class="twitter" href="https://twitter.com/rickastley?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<i class="fa fa-twitter" aria-hidden="true"></i>
+				</a>
+			</li>
+			<li>
+				<a class="instagram" href="https://www.instagram.com/officialrickastley/?hl=de">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<i class="fa fa-instagram" aria-hidden="true"></i>
+				</a>
+			</li>
+			<li>
+				<a class="youtube" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<i class="fa fa-youtube" aria-hidden="true"></i>
+				</a>
+			</li>
+		</ul>
+
+		<p class="logged-in-as">Eingeloggt als <?= CONTENT['Team']['name']; ?></p>
+		
+
+	</footer>
 
 </body>
 
