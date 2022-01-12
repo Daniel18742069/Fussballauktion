@@ -605,11 +605,11 @@ input:invalid~.validation-password {
 
 #block {
   position: fixed;
-  width: 15vw;
-  max-height: 45vh;
-  overflow-y: hidden;
+  max-width: 20vw;
+  max-height: 20vh;
+  overflow-y: scroll;
   overflow-x: hidden;
-  right: 1vw;
+  right: 0vw;
   top: 0vh;
   background: $gradient5;
   z-index: 3;
