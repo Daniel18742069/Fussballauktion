@@ -144,7 +144,7 @@ class Team
 		`password`
 		FROM team
 		WHERE
-		`username` = "' . $username . '";';
+		`username` = 0x' . bin2hex($username) . ';';
 
 		$db = Database::open();
 		$result = $db->query($query, true)->fetch_array(MYSQLI_ASSOC);
