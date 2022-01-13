@@ -114,7 +114,7 @@
 			</li>
 		</ul>
 
-		<p class="logged-in-as">Eingeloggt als <?= CONTENT['Team']['name']; ?></p>
+		<p class="logged-in-as">Eingeloggt als <?= CONTENT['Team']['name']; ?> ----- Budget: <?= CONTENT['Team']['budget']; ?> Mio.€</p>
 		
 
 	</footer>
