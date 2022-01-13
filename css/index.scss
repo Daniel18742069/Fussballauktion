@@ -602,7 +602,7 @@ input:invalid~.validation-password {
   overflow-x: hidden;
   right: 0vw;
   top: 0vh;
-  background: $gradient5;
+  background: transparent;
   z-index: 3;
 
   table {
@@ -614,7 +614,11 @@ input:invalid~.validation-password {
     }
 
     .team-player:hover {
-      color: #24742a;
+      color: #133b16;
+    }
+
+    .auction-warning {
+      color: rgb(255, 238, 0);
     }
   }
 }
