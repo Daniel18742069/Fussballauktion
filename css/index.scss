@@ -9,11 +9,6 @@ $gradient4: linear-gradient(to top, #979797 0%, #ebe9eb 100%);
 $gradient5: linear-gradient(to bottom, #797676 0%, #c2c2c2 100%);
 $gradient6: linear-gradient(to top, #05ff19 0%, #dfdfdf 50%, #00ff4c 100%);
 
-#auctioning {
-  text-align: center;
-  width: 100%;
-}
-
 
 body {
   margin: 0;
@@ -568,12 +563,9 @@ input:invalid~.validation-password {
     border-bottom: 5px solid black;
     border-top: 5px solid black;
 
-
     thead {
       font-size: 25px;
-
     }
-
   }
 }
 
@@ -602,7 +594,6 @@ input:invalid~.validation-password {
 
 }
 
-
 #block {
   position: fixed;
   max-width: 20vw;
@@ -613,8 +604,20 @@ input:invalid~.validation-password {
   top: 0vh;
   background: $gradient5;
   z-index: 3;
-}
 
+  table {
+    text-align: center;
+    width: 100%;
+
+    .team-player {
+      cursor: pointer;
+    }
+
+    .team-player:hover {
+      color: #24742a;
+    }
+  }
+}
 
 footer {
   position: fixed;

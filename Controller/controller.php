@@ -40,7 +40,7 @@ class Controller
 			$Auctions_team = Auction::team($Team->get_index());
 			foreach ($Auctions_team as $Auction_team) {
 				$auction_team = $Auction_team->get_all();
-				$auction_team['player'] = $Players[$auction_team['player']]->get_name();
+				$auction_team['name'] = $Players[$auction_team['player']]->get_name();
 				$auctions_team[$Auction_team->get_index()] = $auction_team;
 			}
 			if (isset($auctions_team)) {
@@ -126,7 +126,7 @@ class Controller
 			$Auctions_team = Auction::team($Team->get_index());
 			foreach ($Auctions_team as $Auction_team) {
 				$auction_team = $Auction_team->get_all();
-				$auction_team['player'] = $Players[$auction_team['player']]->get_name();
+				$auction_team['name'] = $Players[$auction_team['player']]->get_name();
 				$auctions_team[$Auction_team->get_index()] = $auction_team;
 			}
 			if (isset($auctions_team)) {
@@ -165,7 +165,7 @@ class Controller
 			$Auctions_team = Auction::team($Team->get_index());
 			foreach ($Auctions_team as $Auction_team) {
 				$auction_team = $Auction_team->get_all();
-				$auction_team['player'] = $Players[$auction_team['player']]->get_name();
+				$auction_team['name'] = $Players[$auction_team['player']]->get_name();
 				$auctions_team[$Auction_team->get_index()] = $auction_team;
 			}
 			if (isset($auctions_team)) {
